@@ -27,7 +27,7 @@ export const Customer = CustomerModel(sequelize);
 export const OrderItem = OrderItemModel(sequelize);
 export const Order = OrderModel(sequelize);
 export const Product = ProductModel(sequelize);
-export const blacklist = BlackListModel(sequelize);
+export const BlackList = BlackListModel(sequelize);
 
 
 
