@@ -1,8 +1,8 @@
-import { DataTypes, INTEGER, Sequelize } from "sequelize"
+import { DataTypes, Sequelize } from "sequelize"
 
 export const CategoryModel = (sequelize: Sequelize) => {
   return sequelize.define('category', {
-    idcategory: {
+    id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,

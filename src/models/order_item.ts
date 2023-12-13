@@ -9,5 +9,12 @@ export const OrderItemModel = (sequelize: Sequelize) => {
     },
     quantity: DataTypes.INTEGER,
     price: DataTypes.FLOAT,
+    Num_Order: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'Order',
+        key: 'ID',
+      },
+    },
   });
 }

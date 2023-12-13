@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express';
-import { Customer } from '..';
+import { Customer } from '../..';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import bcrypt from 'bcrypt';

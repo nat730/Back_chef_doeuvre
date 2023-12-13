@@ -1,7 +1,7 @@
 import express, { Request, Response } from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import { Customer } from '..';
+import { Customer } from '../..';
 import bcrypt from 'bcrypt';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -21,7 +21,7 @@ app.post('/api/auth/local', async (req: Request, res: Response) => {
       if (!passwordMatch) {
         return res.status(401).json({ error: 'Identifiants invalides' });
       }
-            //@ts-ignore
+      //@ts-ignore
       const jwtToken = jwt.sign({uuid: uuidv4(), userId: user.id },'secret',{ expiresIn: '1h' });
           res.status(200).json({ message: 'Connexion réussie', jwtToken });
     } catch (error) {

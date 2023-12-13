@@ -1,8 +1,8 @@
 import express, { Request, Response } from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import authenticationMiddleware from '../middleware/middleware_jws';
-import { Customer } from '..';
+import authenticationMiddleware from '../../middleware/middleware_jws';
+import { Customer } from '../..';
 import bcrypt from 'bcrypt';
 
 
@@ -39,11 +39,4 @@ app.put('/api/user/password', authenticationMiddleware, async (req: Request, res
       console.error('Erreur lors de la modification du mot de passe :', error);
       res.status(500).json({ error: 'Erreur interne du serveur' });
     }
-  });
-  //@ts-ignore
-  app.get('/api/user/me', authenticationMiddleware, (req, res) => {
-    const userInfo = {
-      id: req.body.id,
-    };
-    res.status(200).json(userInfo);
   });

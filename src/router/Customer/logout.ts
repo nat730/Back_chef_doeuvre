@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express';
-import { BlackList } from '..';
+import { BlackList } from '../..';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 

@@ -7,7 +7,7 @@ export const OrderModel = (sequelize: Sequelize) => {
       autoIncrement: true,
       primaryKey: true,
     },
-    order_date: DataTypes.STRING,
+    order_date: DataTypes.DATE,
     status: DataTypes.STRING,
   });
 }
