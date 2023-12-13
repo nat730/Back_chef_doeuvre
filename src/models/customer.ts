@@ -1,39 +1,13 @@
 import { DataTypes, Sequelize } from "sequelize"
 
-const sequelize = new Sequelize({
-  dialect: "sqlite",
-  storage: "./db.sqlite",
-})
-
-const CUSTOMER = sequelize.define('Customer', {
-  customer_id: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
-  },
-  username:{
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  password: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  first_name: {
-    type: DataTypes.STRING,
-  },
-  last_name: {
-    type: DataTypes.STRING,
-  },
-  email: {
-    type: DataTypes.STRING,
-  },
-  phone: {
-    type: DataTypes.STRING,
-  },
-  address: {
-    type: DataTypes.STRING,
-  },
-});
-
-export default CUSTOMER;
+export const CustomerModel = (sequelize: Sequelize) => {
+  return sequelize.define('category', {
+    username: DataTypes.STRING,
+    password: DataTypes.STRING,
+    fistname: DataTypes.STRING,
+    lastnam: DataTypes.STRING,
+    email: DataTypes.STRING,
+    phone: DataTypes.STRING,
+    adress: DataTypes.STRING,
+  });
+}
