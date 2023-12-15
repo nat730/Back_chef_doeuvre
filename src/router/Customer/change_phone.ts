@@ -4,7 +4,7 @@ import { Customer } from '../..';
 
 export const phonecustomerRouter = Router();
 
-phonecustomerRouter.put('/api/user/phone', authenticationMiddleware, async (req: Request, res: Response) => {
+phonecustomerRouter.put('/api/customer/phone/:id', authenticationMiddleware, async (req: Request, res: Response) => {
     try {
         const userId = req.body.id;
         const { currentphone, phone, phoneConfirmation } = req.body;

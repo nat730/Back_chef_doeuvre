@@ -7,7 +7,7 @@ const saltRounds = 10;
 
 registercustomerRouter.post('/api/auth/local/register', async (req: Request, res: Response) => {
     try {
-      const { password,firstname,lastname,email,phone,adress } = req.body;
+      const { password,firstname,lastname,email,phone } = req.body;
       const existingCustomer = await Customer.findOne({ where: { email } && {phone}});
       if (existingCustomer) {
         return res.status(409).json({ error: 'Cet utilisateur existe déjà' });

@@ -1,0 +1,87 @@
+##CATEGORY
+POST http://localhost:3000/api/category
+Content-Type: application/json
+{
+  "name": "Electronics",
+  "description": "Electronic devices and gadgets"
+}
+###
+DELETE http://localhost:3000/api/category/1
+###
+GET http://localhost:3000/api/category
+###
+GET http://localhost:3000/api/category/1
+###
+PUT http://localhost:3000/api/category/2
+Content-Type: application/json
+
+{
+  "name": "Electronics",
+  "description": "Electronic devices and gadgets"
+}
+
+###Customer
+PUT http://localhost:3000/api/customer/email/1
+Content-Type: application/json
+
+{
+  "currentMail": "newer.email@example.com",
+  "mail": "new.email@example.com",
+  "mailConfirmation": "new.email@example.com"
+}
+###
+
+PUT http://localhost:3000/api/customer/password/1
+Content-Type: application/json
+
+{
+  "currentPassword": 1,
+  "password": "password",
+  "passwordConfirmation": "newpassword456"
+}
+###
+PUT http://localhost:3000/api/customer/phone/1
+Content-Type: application/json
+
+{
+  "currentPhone": 1,
+  "phone": "password",
+  "phoneConfirmation": "newpassword456"
+}
+###
+
+POST http://localhost:3000/api/auth/local
+Content-Type: application/json
+
+{
+  "identifier": "john.doe@example.com",
+  "password": "password123"
+}
+###
+POST http://localhost:3000/api/auth/local/logout
+
+###
+POST http://localhost:3000/api/auth/local/register
+Content-Type: application/json
+
+{
+  "firstname": "John",
+  "lastname": "Doe",
+  "email": "john.doe@example.com",
+  "phone": "123456789",
+  "password": "password123"
+}
+###product(wip)
+POST http://localhost:3000/api/product
+Content-Type: application/json
+
+{
+  "name": "Smartphone",
+  "description": "High-end smartphone",
+  "price": 799.99,
+  "priceperkg": 0.0,
+  "priceasso": 699.99,
+  "priceperkgasso": 0.0,
+  "stock_quantity": 50,
+  "category_id": 1
+}

@@ -4,7 +4,7 @@ import { Customer } from '../..';
 
 export const mailcustomerRouter = Router();
 
-mailcustomerRouter.put('/api/user/email', authenticationMiddleware, async (req: Request, res: Response) => {
+mailcustomerRouter.put('/api/customer/email/:id', authenticationMiddleware, async (req: Request, res: Response) => {
     try {
         const userId = req.body.id;
         const { currentMail, mail, mailConfirmation } = req.body;

@@ -2,13 +2,14 @@ import { Request, Response, Router } from 'express';
 import { Customer } from '../..';
 import bcrypt from 'bcrypt';
 import { v4 as uuidv4 } from 'uuid';
+import jwt from 'jsonwebtoken';
 
 export const logincustomerRouter = Router();
 
 logincustomerRouter.post('/api/auth/local', async (req: Request, res: Response) => {
     try {
       const { identifier, password } = req.body;
-      const user = await Customer.findOne({ where: { mail: identifier } });
+      const user = await Customer.findOne({ where: { email: identifier } });
       if (!user) {
         return res.status(401).json({ error: 'Identifiants invalides' });
       }

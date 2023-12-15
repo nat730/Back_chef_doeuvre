@@ -3,10 +3,9 @@ import authenticationMiddleware from '../../middleware/middleware_jws';
 import { Customer } from '../..';
 import bcrypt from 'bcrypt';
 
-
 export const passwordcustomerRouter = Router();
 
-passwordcustomerRouter.put('/api/user/password', authenticationMiddleware, async (req: Request, res: Response) => {
+passwordcustomerRouter.put('/api/customer/password/:id', authenticationMiddleware, async (req: Request, res: Response) => {
     try {
       const userId = req.body.id;
       const { currentPassword, password,passwordConfirmation } = req.body;

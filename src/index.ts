@@ -25,10 +25,6 @@ import { getproductRouter} from "./router/Product/get_product";
 import { updproductRouter} from "./router/Product/update_product";
 
 
-
-
-
-
 export const sequelize = new Sequelize({
   dialect: 'sqlite',
   storage: 'db/database.sqlite'
@@ -66,24 +62,24 @@ app.use(cors());
 app.use(express.json());
 
 // Routes pour la gestion des catégories
-app.use("category/add", addCategoryRouter);
-app.use("category/delete", delCategoryRouter);
-app.use("category/get", getCategoryRouter);
-app.use("category/update", updCategoryRouter);
+app.use(addCategoryRouter);
+app.use(delCategoryRouter);
+app.use(getCategoryRouter);
+app.use(updCategoryRouter);
 
 // Routes pour la gestion des clients
-app.use("/customer/change-password", passwordcustomerRouter);
-app.use("/customer/change-mail", mailcustomerRouter);
-app.use("/customer/change-phone", phonecustomerRouter);
-app.use("/customer/login", logincustomerRouter);
-app.use("/customer/logout", logoutcustomerRouter);
-app.use("/customer/register", registercustomerRouter);
+app.use(passwordcustomerRouter);
+app.use(mailcustomerRouter);
+app.use(phonecustomerRouter);
+app.use(logincustomerRouter);
+app.use(logoutcustomerRouter);
+app.use(registercustomerRouter);
 
 // Routes pour la gestion des produits
-app.use("/product/add", addproductRouter);
-app.use("/product/delete", delproductRouter);
-app.use("/product/get", getproductRouter);
-app.use("/product/update", updproductRouter);
+app.use(addproductRouter);
+app.use(delproductRouter);
+app.use(getproductRouter);
+app.use(updproductRouter);
 
 
 app.listen(process.env.PORT, () => {
