@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { BlackLlist } from '../index';
+import { BlackList } from '../index';
 import { NextFunction, Request, Response } from 'express';
 
 
@@ -22,7 +22,7 @@ const authenticationMiddleware = async (
 
   try {
     const decoded = jwt.verify(token, 'secret');
-    const isBlacklisted = await BlackLlist.findOne({ where: { jwtToken: token } })
+    const isBlacklisted = await BlackList.findOne({ where: { jwtToken: token } })
     if (!isBlacklisted) {
       //@ts-ignore
       req.user = decoded;

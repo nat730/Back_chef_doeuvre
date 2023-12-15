@@ -1,4 +1,4 @@
-import { DataTypes, Sequelize } from "sequelize"
+import { DataTypes, Sequelize } from "sequelize";
 
 export const CategoryModel = (sequelize: Sequelize) => {
   return sequelize.define('category', {
@@ -9,5 +9,7 @@ export const CategoryModel = (sequelize: Sequelize) => {
     },
     name: DataTypes.STRING,
     description: DataTypes.STRING,
+  }, {
+    timestamps: false, // Désactive les timestamps
   });
-}
+};

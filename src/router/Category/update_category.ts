@@ -1,13 +1,9 @@
-import express, { Request, Response } from 'express';
-import bodyParser from 'body-parser';
-import cors from 'cors';
+import {Router } from 'express';
 import { Category } from '../..';
 
-const app = express();
-app.use(bodyParser.json());
-app.use(cors());
+export const updCategoryRouter = Router();
 
-app.put('/api/category/:id', async (req, res) => {
+updCategoryRouter.put('/api/category/:id', async (req, res) => {
     try {
       const { name, description } = req.body;
       const gameId = req.params.id;

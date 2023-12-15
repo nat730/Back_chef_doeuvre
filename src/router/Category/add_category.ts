@@ -1,13 +1,9 @@
-import express, { Request, Response } from 'express';
-import bodyParser from 'body-parser';
-import cors from 'cors';
+import { Request, Response, Router } from 'express';
 import { Category } from '../..';
 
-const app = express();
-app.use(bodyParser.json());
-app.use(cors());
+export const addCategoryRouter = Router();
 
-app.post('/api/category', async (req: Request, res: Response) => {
+addCategoryRouter.post('/api/category', async (req: Request, res: Response) => {
     try {
       const { name, description } = req.body;
       const newCategory = await Category.create({ name, description });

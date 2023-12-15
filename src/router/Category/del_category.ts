@@ -1,13 +1,9 @@
-import express, { Request, Response } from 'express';
-import bodyParser from 'body-parser';
-import cors from 'cors';
+import { Router } from 'express';
 import { Category } from '../..';
 
-const app = express();
-app.use(bodyParser.json());
-app.use(cors());
+export const delCategoryRouter = Router();
 
-app.delete('/api/category/:id', async (req, res) => {
+delCategoryRouter.delete('/api/category/:id', async (req, res) => {
     try {
       const categoryId = req.params.id;
       const categoryById = await Category.findByPk(categoryId);

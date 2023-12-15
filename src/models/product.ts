@@ -22,5 +22,7 @@ export const ProductModel = (sequelize: Sequelize) => {
         key: 'ID',
       },
     },
+  }    , {
+    timestamps: false, // Désactive les timestamps
   });
-}
+};

@@ -1,18 +1,14 @@
-import express, { Request, Response } from 'express';
-import bodyParser from 'body-parser';
-import cors from 'cors';
+import { Request, Response, Router } from 'express';
 import { Customer } from '../..';
 import bcrypt from 'bcrypt';
 import { v4 as uuidv4 } from 'uuid';
 
-const app = express();
-app.use(bodyParser.json());
-app.use(cors());
+export const logincustomerRouter = Router();
 
-app.post('/api/auth/local', async (req: Request, res: Response) => {
+logincustomerRouter.post('/api/auth/local', async (req: Request, res: Response) => {
     try {
       const { identifier, password } = req.body;
-      const user = await Customer.findOne({ where: { username: identifier } });
+      const user = await Customer.findOne({ where: { mail: identifier } });
       if (!user) {
         return res.status(401).json({ error: 'Identifiants invalides' });
       }

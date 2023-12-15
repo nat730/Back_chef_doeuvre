@@ -1,24 +1,19 @@
-import express, { Request, Response } from 'express';
+import { Request, Response, Router } from 'express';
 import { Customer } from '../..';
-import bodyParser from 'body-parser';
-import cors from 'cors';
 import bcrypt from 'bcrypt';
 
-const app = express();
+export const registercustomerRouter = Router();
 const saltRounds = 10;
-app.use(bodyParser.json());
-app.use(cors());
 
-app.post('/api/auth/local/register', async (req: Request, res: Response) => {
+registercustomerRouter.post('/api/auth/local/register', async (req: Request, res: Response) => {
     try {
-      const { username, password,firstname,lastname,email,phone,adress } = req.body;
-      const existingCustomer = await Customer.findOne({ where: { email } && {username} && {phone}});
+      const { password,firstname,lastname,email,phone,adress } = req.body;
+      const existingCustomer = await Customer.findOne({ where: { email } && {phone}});
       if (existingCustomer) {
         return res.status(409).json({ error: 'Cet utilisateur existe déjà' });
       }
       const hashedPassword = await bcrypt.hash(password, saltRounds);
       const newCustomer = await Customer.create({
-        username,
         password: hashedPassword,
         firstname,
         lastname,
@@ -33,3 +28,4 @@ app.post('/api/auth/local/register', async (req: Request, res: Response) => {
       res.status(500).json({ error: 'Erreur interne du serveur' });
     }
   });
+

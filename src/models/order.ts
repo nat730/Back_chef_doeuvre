@@ -9,5 +9,7 @@ export const OrderModel = (sequelize: Sequelize) => {
     },
     order_date: DataTypes.DATE,
     status: DataTypes.STRING,
+  }    , {
+    timestamps: false, // Désactive les timestamps
   });
-}
+};

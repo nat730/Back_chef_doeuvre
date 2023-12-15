@@ -1,13 +1,9 @@
-import express, { Request, Response } from 'express';
-import bodyParser from 'body-parser';
-import cors from 'cors';
+import { Request, Response, Router } from 'express';
 import { Category } from '../..';
 
-const app = express();
-app.use(bodyParser.json());
-app.use(cors());
+export const getCategoryRouter = Router();
 
-app.get('/api/category', async (req: Request, res: Response) => {
+getCategoryRouter.get('/api/category', async (req: Request, res: Response) => {
     try {
       const category = await Category.findAll();
       res.json(category);
@@ -17,7 +13,7 @@ app.get('/api/category', async (req: Request, res: Response) => {
     }
   });
 
-  app.get('/api/category/:id', async (req: Request, res: Response) => {
+  getCategoryRouter.get('/api/category/:id', async (req: Request, res: Response) => {
     try {
       const categoryId = req.params.id;
       const categoryById = await Category.findByPk(categoryId);

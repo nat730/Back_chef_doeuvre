@@ -1,14 +1,10 @@
-import express, { Request, Response } from 'express';
-import bodyParser from 'body-parser';
-import cors from 'cors';
+import { Request, Response, Router } from 'express';
 import authenticationMiddleware from '../../middleware/middleware_jws';
 import { Customer } from '../..';
 
-const app = express();
-app.use(bodyParser.json());
-app.use(cors());
+export const mailcustomerRouter = Router();
 
-app.put('/api/user/email', authenticationMiddleware, async (req: Request, res: Response) => {
+mailcustomerRouter.put('/api/user/email', authenticationMiddleware, async (req: Request, res: Response) => {
     try {
         const userId = req.body.id;
         const { currentMail, mail, mailConfirmation } = req.body;

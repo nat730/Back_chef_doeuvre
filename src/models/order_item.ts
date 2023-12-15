@@ -12,9 +12,11 @@ export const OrderItemModel = (sequelize: Sequelize) => {
     Num_Order: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'Order',
+        model: 'OrderModel',
         key: 'ID',
       },
     },
+  }    , {
+    timestamps: false, // Désactive les timestamps
   });
-}
+};

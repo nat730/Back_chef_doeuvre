@@ -1,17 +1,12 @@
-import express, { Request, Response } from 'express';
-import bodyParser from 'body-parser';
-import cors from 'cors';
+import { Request, Response, Router } from 'express';
 import authenticationMiddleware from '../../middleware/middleware_jws';
 import { Customer } from '../..';
 import bcrypt from 'bcrypt';
 
 
-const app = express();
-app.use(bodyParser.json());
-app.use(cors());
+export const passwordcustomerRouter = Router();
 
-
-app.put('/api/user/password', authenticationMiddleware, async (req: Request, res: Response) => {
+passwordcustomerRouter.put('/api/user/password', authenticationMiddleware, async (req: Request, res: Response) => {
     try {
       const userId = req.body.id;
       const { currentPassword, password,passwordConfirmation } = req.body;

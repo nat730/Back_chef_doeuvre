@@ -1,13 +1,9 @@
-import express, { Request, Response } from 'express';
+import { Router } from 'express';
 import { BlackList } from '../..';
-import bodyParser from 'body-parser';
-import cors from 'cors';
 
-const app = express();
-app.use(bodyParser.json());
-app.use(cors());
+export const logoutcustomerRouter = Router();
 
-app.post('/api/auth/local/logout', async (req, res) => {
+logoutcustomerRouter.post('/api/auth/local/logout', async (req, res) => {
     try {
       const tokenToBlacklist = req.headers.authorization;
   

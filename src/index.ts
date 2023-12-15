@@ -1,21 +1,33 @@
 import "dotenv/config";
 import express from "express";
-import cors from "cors";
-import bodyParser from "body-parser";
-import { Sequelize, DataTypes} from "sequelize";
-
+import { Sequelize} from "sequelize";
 import { CategoryModel } from "./models/category";
 import { CustomerModel } from "./models/customer";
 import { OrderItemModel} from "./models/order_item";
 import { OrderModel } from "./models/order";
 import { ProductModel } from "./models/product";
 import { BlackListModel } from "./models/black_list";
+import cors from "cors";
+
+import { addCategoryRouter} from "./router/Category/add_category";
+import { delCategoryRouter} from "./router/Category/del_category";
+import { getCategoryRouter} from "./router/Category/get_category";
+import { updCategoryRouter} from "./router/Category/update_category";
+import { passwordcustomerRouter} from "./router/Customer/change_password";
+import { mailcustomerRouter} from "./router/Customer/change_mail";
+import { phonecustomerRouter} from "./router/Customer/change_phone";
+import { logincustomerRouter} from "./router/Customer/login";
+import { logoutcustomerRouter} from "./router/Customer/logout";
+import { registercustomerRouter} from "./router/Customer/register";
+import { addproductRouter} from "./router/Product/add_product";
+import { delproductRouter} from "./router/Product/del_product";
+import { getproductRouter} from "./router/Product/get_product";
+import { updproductRouter} from "./router/Product/update_product";
 
 
-// import { officialGameRouter } from "./router/officialGame";
-// import { freeGameRouter } from "./router/freeGame";
-// import { authRouter } from "./router/auth";
-// import { userRouter } from "./router/users";
+
+
+
 
 export const sequelize = new Sequelize({
   dialect: 'sqlite',
@@ -29,23 +41,51 @@ export const Order = OrderModel(sequelize);
 export const Product = ProductModel(sequelize);
 export const BlackList = BlackListModel(sequelize);
 
+Customer.hasMany(Order, { foreignKey: 'customer_id' });
+Order.belongsTo(Customer, { foreignKey: 'customer_id' });
+
+Order.hasMany(OrderItem, { foreignKey: 'order_id' });
+OrderItem.belongsTo(Order, { foreignKey: 'order_id' });
+
+Product.hasMany(OrderItem, { foreignKey: 'product_id' });
+OrderItem.belongsTo(Product, { foreignKey: 'product_id' });
+
+Product.belongsTo(Category, { foreignKey: 'category_id', as: 'productCategory' });
+Category.hasMany(Product, { foreignKey: 'category_id', as: 'categoryProducts' });
+
+
 
 
 // sequelize.sync({ force: true });
 sequelize.sync();
 
 const app = express();
-// app.use(cors());
-// app.use(bodyParser.json());
 
-// const apiRouter = express.Router();
-// apiRouter.use('/auth', authRouter);
-// apiRouter.use('/official-games', officialGameRouter );
-// apiRouter.use('/free-games', freeGameRouter);
-// apiRouter.use('/users', userRouter);
+app.use(cors());
 
-// app.use("/api", apiRouter);
+app.use(express.json());
+
+// Routes pour la gestion des catégories
+app.use("category/add", addCategoryRouter);
+app.use("category/delete", delCategoryRouter);
+app.use("category/get", getCategoryRouter);
+app.use("category/update", updCategoryRouter);
+
+// Routes pour la gestion des clients
+app.use("/customer/change-password", passwordcustomerRouter);
+app.use("/customer/change-mail", mailcustomerRouter);
+app.use("/customer/change-phone", phonecustomerRouter);
+app.use("/customer/login", logincustomerRouter);
+app.use("/customer/logout", logoutcustomerRouter);
+app.use("/customer/register", registercustomerRouter);
+
+// Routes pour la gestion des produits
+app.use("/product/add", addproductRouter);
+app.use("/product/delete", delproductRouter);
+app.use("/product/get", getproductRouter);
+app.use("/product/update", updproductRouter);
+
 
 app.listen(process.env.PORT, () => {
-  console.log(`Example app listening on port ${process.env.PORT}!`)
+  console.log(`Example app listening on port ${process.env.PORT}!`);
 });

@@ -7,11 +7,12 @@ export const CustomerModel = (sequelize: Sequelize) => {
       autoIncrement: true,
       primaryKey: true,
     },
-    username: DataTypes.STRING,
     password: DataTypes.STRING,
     firstname: DataTypes.STRING,
     lastname: DataTypes.STRING,
     email: DataTypes.STRING,
-    phone: DataTypes.STRING
+    phone: DataTypes.STRING,
+  }    , {
+    timestamps: false, // Désactive les timestamps
   });
-}
+};
