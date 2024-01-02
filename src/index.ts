@@ -1,28 +1,20 @@
 import "dotenv/config";
 import express from "express";
+import cors from "cors";
 import { Sequelize} from "sequelize";
+
+//import model
 import { CategoryModel } from "./models/category";
 import { CustomerModel } from "./models/customer";
 import { OrderItemModel} from "./models/order_item";
 import { OrderModel } from "./models/order";
 import { ProductModel } from "./models/product";
 import { BlackListModel } from "./models/black_list";
-import cors from "cors";
 
-import { addCategoryRouter} from "./router/Category/add_category";
-import { delCategoryRouter} from "./router/Category/del_category";
-import { getCategoryRouter} from "./router/Category/get_category";
-import { updCategoryRouter} from "./router/Category/update_category";
-import { passwordcustomerRouter} from "./router/Customer/change_password";
-import { mailcustomerRouter} from "./router/Customer/change_mail";
-import { phonecustomerRouter} from "./router/Customer/change_phone";
-import { logincustomerRouter} from "./router/Customer/login";
-import { logoutcustomerRouter} from "./router/Customer/logout";
-import { registercustomerRouter} from "./router/Customer/register";
-import { addproductRouter} from "./router/Product/add_product";
-import { delproductRouter} from "./router/Product/del_product";
-import { getproductRouter} from "./router/Product/get_product";
-import { updproductRouter} from "./router/Product/update_product";
+//import router
+import { categoryRouter} from "./router/Category";
+import { authRouter} from "./router/Customer";
+import { productRouter} from "./router/Product";
 
 
 export const sequelize = new Sequelize({
@@ -49,38 +41,20 @@ OrderItem.belongsTo(Product, { foreignKey: 'product_id' });
 Product.belongsTo(Category, { foreignKey: 'category_id', as: 'productCategory' });
 Category.hasMany(Product, { foreignKey: 'category_id', as: 'categoryProducts' });
 
-
-
-
 // sequelize.sync({ force: true });
 sequelize.sync();
 
-const app = express();
-
+const app = express();  
 app.use(cors());
-
 app.use(express.json());
 
-// Routes pour la gestion des catégories
-app.use(addCategoryRouter);
-app.use(delCategoryRouter);
-app.use(getCategoryRouter);
-app.use(updCategoryRouter);
 
-// Routes pour la gestion des clients
-app.use(passwordcustomerRouter);
-app.use(mailcustomerRouter);
-app.use(phonecustomerRouter);
-app.use(logincustomerRouter);
-app.use(logoutcustomerRouter);
-app.use(registercustomerRouter);
+const apiRouter = express.Router();
+app.use('/category', categoryRouter);
+app.use('/auth', authRouter);
+app.use('/product',productRouter);
 
-// Routes pour la gestion des produits
-app.use(addproductRouter);
-app.use(delproductRouter);
-app.use(getproductRouter);
-app.use(updproductRouter);
-
+app.use("/api", apiRouter);
 
 app.listen(process.env.PORT, () => {
   console.log(`Example app listening on port ${process.env.PORT}!`);

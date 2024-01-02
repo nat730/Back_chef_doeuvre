@@ -1,7 +1,7 @@
 import { DataTypes, Sequelize } from "sequelize";
 
 export const BlackListModel = (sequelize: Sequelize) => {
-    return sequelize.define('token-black-list', {
+    return sequelize.define('blacklist', {
         token: DataTypes.STRING,
     }
     , {

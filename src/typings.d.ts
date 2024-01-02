@@ -3,5 +3,6 @@ declare namespace Express {
          user?: string;
          token?: string;
          email?:string
+         phone?:string
      }
  }

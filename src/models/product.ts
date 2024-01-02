@@ -2,7 +2,7 @@ import { DataTypes, Sequelize } from "sequelize"
 
 
 export const ProductModel = (sequelize: Sequelize) => {
-  return sequelize.define('Product', {
+  return sequelize.define('product', {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
