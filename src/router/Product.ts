@@ -4,11 +4,11 @@ import authenticationMiddleware from '../middleware/middleware_jws';
 
 export const productRouter = Router();
 
-// Create a new product
+// Create a new product 
 productRouter.post('/', authenticationMiddleware, async (req: Request, res: Response) => {
   try {
-    const { name, description, price, priceperkg, priceasso, priceperkgasso, stock_quantity, category } = req.body;
-    const categoryExists = await Category.findOne({ where: { name: category } });
+    const { name, description, price, priceperkg, priceasso, priceperkgasso, stock_quantity, FKcategory } = req.body;
+    const categoryExists = await Category.findOne({ where: { name: FKcategory } });
 
     if (!categoryExists) {
       return res.status(404).json({ error: 'La catégorie spécifiée n\'existe pas.' });
@@ -22,7 +22,7 @@ productRouter.post('/', authenticationMiddleware, async (req: Request, res: Resp
       priceasso,
       priceperkgasso,
       stock_quantity,
-      category,
+      FKcategory,
     });
 
     res.status(201).json(newProduct);
@@ -63,7 +63,7 @@ productRouter.get('/:id', async (req: Request, res: Response) => {
 // Update a product by ID
 productRouter.put('/:id', authenticationMiddleware, async (req: Request, res: Response) => {
   try {
-    const { name, description, price, priceperkg, priceasso, priceperkgasso, stock_quantity, category } = req.body;
+    const { name, description, price, priceperkg, priceasso, priceperkgasso, stock_quantity, FKcategory } = req.body;
     const productId = req.params.id;
 
     const productById = await Product.findByPk(productId);
@@ -72,7 +72,7 @@ productRouter.put('/:id', authenticationMiddleware, async (req: Request, res: Re
       return res.status(404).json({ error: 'Produit non trouvé.' });
     }
 
-    const categoryExists = await Category.findOne({ where: { name: category } });
+    const categoryExists = await Category.findOne({ where: { name: FKcategory } });
 
     if (!categoryExists) {
       return res.status(404).json({ error: 'La catégorie spécifiée n\'existe pas.' });
@@ -86,7 +86,7 @@ productRouter.put('/:id', authenticationMiddleware, async (req: Request, res: Re
       priceasso,
       priceperkgasso,
       stock_quantity,
-      category,
+      FKcategory,
     });
 
     res.status(200).json({ message: 'Le produit a été modifié' });

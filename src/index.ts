@@ -38,8 +38,7 @@ OrderItem.belongsTo(Order, { foreignKey: 'order_id' });
 Product.hasMany(OrderItem, { foreignKey: 'product_id' });
 OrderItem.belongsTo(Product, { foreignKey: 'product_id' });
 
-Product.belongsTo(Category, { foreignKey: 'category_id', as: 'productCategory' });
-Category.hasMany(Product, { foreignKey: 'category_id', as: 'categoryProducts' });
+Product.hasOne(Category, { foreignKey: 'category_id'});
 
 // sequelize.sync({ force: true });
 sequelize.sync();
@@ -50,9 +49,9 @@ app.use(express.json());
 
 
 const apiRouter = express.Router();
-app.use('/category', categoryRouter);
-app.use('/auth', authRouter);
-app.use('/product',productRouter);
+apiRouter.use('/category', categoryRouter);
+apiRouter.use('/auth', authRouter);
+apiRouter.use('/product',productRouter);
 
 app.use("/api", apiRouter);
 

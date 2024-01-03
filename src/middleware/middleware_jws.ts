@@ -11,7 +11,7 @@ const authenticationMiddleware = async (
   const authorizationHeader = req.headers.authorization;
 
   if (!authorizationHeader) {
-    return res.status(401).json({ error: 'Token manquant. Authentification requise.hhh' });
+    return res.status(401).json({ error: 'Token manquant. Authentification requise.' });
   }
 
   const [bearer, token] = authorizationHeader.split(' ');

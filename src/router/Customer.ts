@@ -10,7 +10,7 @@ export const authRouter = Router();
 // Update Email Route
 authRouter.put('/email/:id', authenticationMiddleware, async (req: Request, res: Response) => {
   try {
-    const userId = req.body.id;
+    const userId = req.params.id;
     const { currentMail, mail, mailConfirmation } = req.body;
 
     const user = await Customer.findByPk(userId);
@@ -39,11 +39,11 @@ authRouter.put('/email/:id', authenticationMiddleware, async (req: Request, res:
 // Update Password Route
 authRouter.put('/password/:id', authenticationMiddleware, async (req: Request, res: Response) => {
   try {
-    const userId = req.body.id;
+    const userId = req.params.id;
     const { currentPassword, password, passwordConfirmation } = req.body;
 
     if (password !== passwordConfirmation) {
-      return res.status(400).json({ error: 'Mot de passe différents' });
+      return res.status(400).json({ error: 'Les nouveaux mots de passe ne correspondent pas.' });
     }
 
     const user = await Customer.findByPk(userId);
@@ -51,7 +51,8 @@ authRouter.put('/password/:id', authenticationMiddleware, async (req: Request, r
     if (!user) {
       return res.status(404).json({ error: 'Utilisateur non trouvé.' });
     }
-//@ts-ignore
+
+    //@ts-ignore
     const passwordMatch = await bcrypt.compare(currentPassword, user.password);
 
     if (!passwordMatch) {
@@ -68,10 +69,11 @@ authRouter.put('/password/:id', authenticationMiddleware, async (req: Request, r
   }
 });
 
+
 // Update Phone Route
 authRouter.put('/phone/:id', authenticationMiddleware, async (req: Request, res: Response) => {
   try {
-    const userId = req.body.id;
+    const userId = req.params.id;
     const { currentphone, phone, phoneConfirmation } = req.body;
 
     const user = await Customer.findByPk(userId);
@@ -79,23 +81,25 @@ authRouter.put('/phone/:id', authenticationMiddleware, async (req: Request, res:
     if (!user) {
       return res.status(404).json({ error: 'Utilisateur non trouvé.' });
     }
-//@ts-ignore
+
+    //@ts-ignore
     if (currentphone !== user.phone) {
-      return res.status(401).json({ error: 'Phone actuel incorrect.' });
+      return res.status(401).json({ error: 'Numéro de téléphone actuel incorrect.' });
     }
 
     if (phone !== phoneConfirmation) {
-      return res.status(400).json({ error: 'Les phones ne correspondent pas.' });
+      return res.status(400).json({ error: 'Les numéros de téléphone ne correspondent pas.' });
     }
 
     await user.update({ phone: phone });
 
-    res.json({ message: 'Phone modifiée avec succès.' });
+    res.json({ message: 'Numéro de téléphone modifié avec succès.' });
   } catch (error) {
     console.error('Erreur lors de la modification du téléphone :', error);
     res.status(500).json({ error: 'Erreur interne du serveur' });
   }
 });
+
 
 // Login Route
 authRouter.post('/local', async (req: Request, res: Response) => {
@@ -130,22 +134,33 @@ authRouter.post('/local/logout', async (req, res) => {
       return res.status(401).json({ error: 'Incorrect token format. Authentication required.' });
     }
 
-    await BlackList.create({ jwtToken: token });
-    const latestBlacklistedToken = await BlackList.findOne({
-      order: [['createdAt', 'DESC']],
+    const existingToken = await BlackList.findOne({
+      where: { token: token },
     });
-//@ts-ignore
-    res.status(200).json({ message: 'Blacklist updated', latestToken: latestBlacklistedToken?.jwtToken });
+
+    if (existingToken) {
+      return res.status(409).json({ error: 'Ce token a déjà été utilisé pour la déconnexion.' });
+    }
+
+    // Enregistrement de la déconnexion dans la base de données
+    await BlackList.create({ token: token });
+
+    return res.status(204).end();
   } catch (error) {
     console.error('Error during logout:', error);
-    res.status(500).json({ error: 'Internal server error' });
+    return res.status(500).json({ error: 'Internal server error' });
   }
 });
+
 
 // Register Route
 authRouter.post('/local/register', async (req: Request, res: Response) => {
   try {
     const { password, firstname, lastname, email, phone } = req.body;
+
+    if (!password || !firstname || !lastname || !email || !phone) {
+      return res.status(400).json({ error: 'Veuillez fournir toutes les informations nécessaires.' });
+    }
 
     const existingCustomer = await Customer.findOne({ where: { email } });
 

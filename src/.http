@@ -1,5 +1,4 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYmRlNDkyZDctODI1Zi00YmQwLTgwNTEtMzU4ZmE3ZDkxNGFiIiwidXNlcklkIjoxLCJpYXQiOjE3MDMxNzQ1NjYsImV4cCI6MTcwMzE3ODE2Nn0._itLhi9bUBlV1ScCAPf4kd1VS-i2ng-dm5pvKfsixZk
-
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiOTM1MzJmMjItNWIxMy00OTc0LTlmMDYtZmMzNzg0Yzg5OGNiIiwidXNlcklkIjoxLCJpYXQiOjE3MDQyOTc3MDcsImV4cCI6MTcwNDMwMTMwN30.vXZZNGS_KM7nLcH0IHT0cWlSt6yeUxOumzLfwSRGTFg
 @base_url= http://localhost:3000
 
 ###CATEGORY
@@ -12,14 +11,21 @@ Authorization: Bearer {{token}}
   "description": "Electronic devices and gadgets"
 }
 ###
-DELETE {{base_url}}/api/category/1
+DELETE {{base_url}}/api/category/
+Content-Type: application/json
+Authorization: Bearer {{token}}
+###
+DELETE {{base_url}}/api/category/2
+Content-Type: application/json
+Authorization: Bearer {{token}}
 ###
 GET {{base_url}}/api/category
 ###
-GET {{base_url}}/api/category/1
+GET {{base_url}}/api/category/3
 ###
-PUT {{base_url}}/api/category/2
+PUT {{base_url}}/api/category/3
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
   "name": "Electronics",
@@ -27,34 +33,35 @@ Content-Type: application/json
 }
 
 ###Customer
-PUT {{base_url}}/api/customer/email/1
+PUT {{base_url}}/api/auth/email/1
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
   "currentMail": "john.doe@example.com",
-  "mail": "john.doe@exampffle.com",
-  "mailConfirmation": "john.doe@exampffle.com"
+  "mail": "john.doe@example.com",
+  "mailConfirmation": "john.doe@example.com"
 }
 ###
 
-PUT {{base_url}}/api/customer/password/1
-Authorization: {{token}}
+PUT {{base_url}}/api/auth/password/1
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-  "currentPassword": 1,
-  "password": "password",
+  "currentPassword": "password123",
+  "password": "newpassword456",
   "passwordConfirmation": "newpassword456"
 }
 ###
-PUT {{base_url}}/api/customer/phone/1
+PUT {{base_url}}/api/auth/phone/1
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
-  "currentPhone": 1,
+  "currentphone": "123456789",
   "phone": "password",
-  "phoneConfirmation": "newpassword456"
+  "phoneConfirmation": "password"
 }
 ###
 
@@ -67,6 +74,8 @@ Content-Type: application/json
 }
 ###
 POST {{base_url}}/api/auth/local/logout
+Content-Type: application/json
+Authorization: Bearer {{token}}
 
 ###
 POST {{base_url}}/api/auth/local/register
@@ -82,6 +91,7 @@ Content-Type: application/json
 ###product(wip)
 POST {{base_url}}/api/product
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
   "name": "Smartphone",
@@ -91,5 +101,5 @@ Content-Type: application/json
   "priceasso": 699.99,
   "priceperkgasso": 0.0,
   "stock_quantity": 50,
-  "category_id": 1
+  "category":"1"
 }
