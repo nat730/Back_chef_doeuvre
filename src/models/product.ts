@@ -1,5 +1,4 @@
-import { DataTypes, Sequelize } from "sequelize"
-
+import { DataTypes, Sequelize } from "sequelize";
 
 export const ProductModel = (sequelize: Sequelize) => {
   return sequelize.define('product', {
@@ -15,14 +14,14 @@ export const ProductModel = (sequelize: Sequelize) => {
     priceasso: DataTypes.FLOAT,
     priceperkgasso: DataTypes.FLOAT,
     stock_quantity: DataTypes.STRING,
-    FKcategory: {
-      type: DataTypes.STRING,
+    categoryId: {
+      type: DataTypes.INTEGER,
       references: {
-        model: 'CategoryModel',
-        key: 'ID',
+        model: 'categories',
+        key: 'id',
       },
     },
-  }    , {
-    timestamps: false, // Désactive les timestamps
+  }, {
+    timestamps: false,
   });
 };

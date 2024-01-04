@@ -1,4 +1,5 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiOTM1MzJmMjItNWIxMy00OTc0LTlmMDYtZmMzNzg0Yzg5OGNiIiwidXNlcklkIjoxLCJpYXQiOjE3MDQyOTc3MDcsImV4cCI6MTcwNDMwMTMwN30.vXZZNGS_KM7nLcH0IHT0cWlSt6yeUxOumzLfwSRGTFg
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiNDk1NTJlMGYtYjA4NS00ZTI4LWEzM2EtYzRjZWJhMzFmODkwIiwidXNlcklkIjoxLCJpYXQiOjE3MDQzODIyMTQsImV4cCI6MTcwNDM4NTgxNH0.zKG6goSOG-AAXXUYAkeXnw6THMspBvuchNtaeIlyxcw
+
 @base_url= http://localhost:3000
 
 ###CATEGORY
@@ -9,7 +10,7 @@ Authorization: Bearer {{token}}
 {
   "name": "Electronics",
   "description": "Electronic devices and gadgets"
-}
+  }
 ###
 DELETE {{base_url}}/api/category/
 Content-Type: application/json
@@ -29,7 +30,7 @@ Authorization: Bearer {{token}}
 
 {
   "name": "Electronics",
-  "description": "Electronic devices and gadgets"
+  "description": "Electronic devices and gadgets",
 }
 
 ###Customer
@@ -94,12 +95,12 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "name": "Smartphone",
-  "description": "cher",
-  "price": 799.99,
-  "priceperkg": 0.0,
-  "priceasso": 699.99,
-  "priceperkgasso": 0.0,
-  "stock_quantity": 50,
-  "category":"1"
+  "name": "Nom du produit",
+  "description": "Description du produit",
+  "price": 10.99,
+  "priceperkg": 5.99,
+  "priceasso": 8.99,
+  "priceperkgasso": 4.99,
+  "stock_quantity": 100,
+  "categoryId": "Electronics"
 }
