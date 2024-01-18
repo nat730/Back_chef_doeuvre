@@ -14,13 +14,6 @@ export const ProductModel = (sequelize: Sequelize) => {
     priceasso: DataTypes.FLOAT,
     priceperkgasso: DataTypes.FLOAT,
     stock_quantity: DataTypes.STRING,
-    categoryId: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'categories',
-        key: 'id',
-      },
-    },
   }, {
     timestamps: false,
   });

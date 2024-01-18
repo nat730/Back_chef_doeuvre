@@ -7,23 +7,22 @@ export const productRouter = Router();
 // Create a new product 
 productRouter.post('/', authenticationMiddleware, async (req: Request, res: Response) => {
   try {
-    const { name, description, price, priceperkg, priceasso, priceperkgasso, stock_quantity, categoryId } = req.body;
-    console.log(name, description, price, priceperkg, priceasso, priceperkgasso, stock_quantity, categoryId);
-    console.log("patate");
+    const { name, description, price, priceperkg, priceasso, priceperkgasso, stock_quantity, category_id } = req.body;
     
     // Validation des données
-    if (!name || !description || !price || !stock_quantity || !categoryId) {
+    if (!name || !description || !price || !stock_quantity || !category_id) {
       return res.status(400).json({ error: 'Veuillez fournir toutes les informations nécessaires pour créer un produit.' });
     }
 
     // Vérification de l'existence de la catégorie
-    const categoryExists = await Category.findOne({ where: { name: categoryId } });
-
+    const categoryExists = await Category.findOne({ where: { id: category_id } });
+    
     if (!categoryExists) {
       return res.status(404).json({ error: 'La catégorie spécifiée n\'existe pas.' });
     }
 
-    
+    //@ts-ignore
+    const categoryName = categoryExists.name;
 
     // Création d'un nouveau produit
     const newProduct = await Product.create({
@@ -34,11 +33,11 @@ productRouter.post('/', authenticationMiddleware, async (req: Request, res: Resp
       priceasso,
       priceperkgasso,
       stock_quantity,
-      categoryId,
+      category_id,
     }); 
 
     // Réponse avec le nouveau produit créé
-    res.status(201).json(newProduct);
+    res.status(201).json({ newProduct, categoryName });
   } catch (error) {
     console.error('Erreur lors de la création d\'un produit :', error);
     res.status(500).json({ error: 'Erreur interne du serveur' });
@@ -47,15 +46,42 @@ productRouter.post('/', authenticationMiddleware, async (req: Request, res: Resp
 
 
 // Get all products
-productRouter.get('/', async (req: Request, res: Response) => {
+productRouter.get('/', async (req, res) => {
   try {
-    const products = await Product.findAll();
-    res.json(products);
+    // Récupérer tous les produits avec les détails de la catégorie
+    const productsWithCategory = await Product.findAll({
+      include: [{ model: Category}]
+    });
+
+    // Transformez les données pour remplacer l'ID par le nom de la catégorie
+    const transformedProducts = productsWithCategory.map(Product => ({
+      //@ts-ignore
+      id: Product.id,
+      //@ts-ignore
+      name: Product.name,
+      //@ts-ignore
+      description: Product.description,
+      //@ts-ignore
+      price: Product.price,
+      //@ts-ignore
+      priceperkg: Product.priceperkg,
+      //@ts-ignore
+      priceasso: Product.priceasso,
+      //@ts-ignore
+      priceperkgasso: Product.priceperkgasso,
+      //@ts-ignore
+      stock_quantity: Product.stock_quantity,
+      //@ts-ignore
+      categoryName: Product.category.name,
+    }));
+
+    res.json(transformedProducts);
   } catch (error) {
     console.error('Erreur lors de la récupération des produits :', error);
     res.status(500).json({ error: 'Erreur interne du serveur' });
   }
 });
+
 
 // Get a specific product by ID
 productRouter.get('/:id', async (req: Request, res: Response) => {

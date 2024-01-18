@@ -30,26 +30,28 @@ export const Product = ProductModel(sequelize);
 export const BlackList = BlackListModel(sequelize);
 
 Customer.hasMany(Order, { foreignKey: 'customer_id' });
-Order.belongsTo(Customer, { foreignKey: 'customer_id' });
+Order.belongsTo(Customer, { foreignKey: 'id' });
 
 Order.hasMany(OrderItem, { foreignKey: 'order_id' });
-OrderItem.belongsTo(Order, { foreignKey: 'order_id' });
+OrderItem.belongsTo(Order, { foreignKey: 'id' });
 
 Product.hasMany(OrderItem, { foreignKey: 'product_id' });
-OrderItem.belongsTo(Product, { foreignKey: 'product_id' });
+OrderItem.belongsTo(Product, { foreignKey: 'id' });
 
-Product.hasOne(Category, { foreignKey: 'category_id'});
+Category.hasOne(Product, { foreignKey: 'category_id'});
+Product.belongsTo(Category, { foreignKey: 'id' });
+
 
 // sequelize.sync({ force: true });
 sequelize.sync();
 
-const app = express();  
+const app = express();
 app.use(cors());
 app.use(express.json());
 
 
 const apiRouter = express.Router();
-apiRouter.use('/category', categoryRouter);
+apiRouter.use('/categories', categoryRouter);
 apiRouter.use('/auth', authRouter);
 apiRouter.use('/product',productRouter);
 
