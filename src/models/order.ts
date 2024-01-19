@@ -7,8 +7,6 @@ export const OrderModel = (sequelize: Sequelize) => {
     defaultValue: 'pending',
     collect_schedule: DataTypes.DATE,
     customer_id: DataTypes.INTEGER,
-  }, {
-    timestamps: false,
   });
 };
 
