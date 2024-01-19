@@ -6,9 +6,11 @@ import { v4 as uuidv4 } from 'uuid';
 import jwt from 'jsonwebtoken';
 
 export const authRouter = Router();
+authRouter.use(authenticationMiddleware);
+
 
 // Update Email Route
-authRouter.put('/email/:id', authenticationMiddleware, async (req: Request, res: Response) => {
+authRouter.put('/email/:id', async (req: Request, res: Response) => {
   try {
     const userId = req.params.id;
     const { currentMail, mail, mailConfirmation } = req.body;
@@ -36,7 +38,7 @@ authRouter.put('/email/:id', authenticationMiddleware, async (req: Request, res:
 });
 
 // Update Password Route
-authRouter.put('/password/:id', authenticationMiddleware, async (req: Request, res: Response) => {
+authRouter.put('/password/:id', async (req: Request, res: Response) => {
   try {
     const userId = req.params.id;
     const { currentPassword, password, passwordConfirmation } = req.body;
@@ -69,7 +71,7 @@ authRouter.put('/password/:id', authenticationMiddleware, async (req: Request, r
 
 
 // Update Phone Route
-authRouter.put('/phone/:id', authenticationMiddleware, async (req: Request, res: Response) => {
+authRouter.put('/phone/:id', async (req: Request, res: Response) => {
   try {
     const userId = req.params.id;
     const { currentphone, phone, phoneConfirmation } = req.body;

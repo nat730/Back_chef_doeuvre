@@ -3,8 +3,9 @@ import { Category } from '..';
 import authenticationMiddleware from '../middleware/middleware_jws';
 
 export const categoryRouter = Router();
+categoryRouter.use(authenticationMiddleware);
 
-categoryRouter.post('/', authenticationMiddleware, async (req: Request, res: Response) => {
+categoryRouter.post('/', async (req: Request, res: Response) => {
   try {
     const { name, description } = req.body;
     const newCategory = await Category.create({ name, description });
@@ -15,7 +16,7 @@ categoryRouter.post('/', authenticationMiddleware, async (req: Request, res: Res
   }
 });
 
-categoryRouter.delete('/:id', authenticationMiddleware, async (req, res) => {
+categoryRouter.delete('/:id', async (req, res) => {
   try {
     const categoryId = req.params.id;
     const categoryToDelete = await Category.findByPk(categoryId);
@@ -34,7 +35,7 @@ categoryRouter.delete('/:id', authenticationMiddleware, async (req, res) => {
 });
 
 
-categoryRouter.delete('/', authenticationMiddleware, async (req, res) => {
+categoryRouter.delete('/', async (req, res) => {
   try {
     await Category.destroy({ where: {} });
     res.status(200).json({ message: 'Toutes les catégories ont été supprimées.' });
@@ -72,7 +73,7 @@ categoryRouter.get('/:id', async (req: Request, res: Response) => {
 });
 
 
-categoryRouter.put('/:id', authenticationMiddleware, async (req, res) => {
+categoryRouter.put('/:id', async (req, res) => {
   try {
     const categoryId = req.params.id;
     const { name, description } = req.body;

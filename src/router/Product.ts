@@ -3,9 +3,10 @@ import { Product, Category } from '..';
 import authenticationMiddleware from '../middleware/middleware_jws';
 
 export const productRouter = Router();
+productRouter.use(authenticationMiddleware);
 
 // Create a new product 
-productRouter.post('/', authenticationMiddleware, async (req: Request, res: Response) => {
+productRouter.post('/', async (req: Request, res: Response) => {
   try {
     const { name, description, price, priceperkg, priceasso, priceperkgasso, stock_quantity, category_id } = req.body;
     
@@ -91,7 +92,7 @@ productRouter.get('/:id', async (req: Request, res: Response) => {
 });
 
 // Update a product by ID
-productRouter.put('/:id', authenticationMiddleware, async (req: Request, res: Response) => {
+productRouter.put('/:id', async (req: Request, res: Response) => {
   try {
     const { name, description, price, priceperkg, priceasso, priceperkgasso, stock_quantity, FKcategory } = req.body;
     const productId = req.params.id;
