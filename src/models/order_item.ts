@@ -10,5 +10,7 @@ export const OrderItemModel = (sequelize: Sequelize) => {
     price_per_kg_asso: DataTypes.FLOAT,
     order_id: DataTypes.INTEGER,
     product_id: DataTypes.INTEGER,
+  }, {
+    timestamps: false,
   });
 };

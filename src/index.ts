@@ -4,20 +4,20 @@ import cors from "cors";
 import { Sequelize } from "sequelize";
 
 // Importez les modèles
+// Importez les modèles
 import { CategoryModel } from "./models/category";
 import { CustomerModel } from "./models/customer";
 import { OrderItemModel } from "./models/order_item";
 import { OrderModel } from "./models/order";
 import { ProductModel } from "./models/product";
 import { BlackListModel } from "./models/black_list";
-import { CatalogModel } from "./models/catalog";
+import { CatalogueModel } from "./models/catalogue";
+import { CatalogueItemModel } from "./models/catalogue_items";
 
 // Importez les routes
 import { categoryRouter } from "./router/Category";
 import { authRouter } from "./router/Customer";
 import { productRouter } from "./router/Product";
-import { catalogRouter } from "./router/Catalog";
-
 
 // Initialisez Sequelize avec votre configuration
 export const sequelize = new Sequelize({
@@ -32,8 +32,10 @@ export const OrderItem = OrderItemModel(sequelize);
 export const Order = OrderModel(sequelize);
 export const Product = ProductModel(sequelize);
 export const BlackList = BlackListModel(sequelize);
-export const Catalog = CatalogModel(sequelize);
+export const Catalogue = CatalogueModel(sequelize);
+export const CatalogueItem = CatalogueItemModel(sequelize);
 
+// Définissez les relations entre les modèles
 Customer.hasMany(Order, { foreignKey: 'customer_id' });
 Order.belongsTo(Customer, { foreignKey: 'customer_id' });
 
@@ -46,10 +48,8 @@ OrderItem.belongsTo(Product, { foreignKey: 'product_id' });
 Category.hasOne(Product, { foreignKey: 'category_id' });
 Product.belongsTo(Category, { foreignKey: 'category_id' });
 
-Catalog.belongsToMany(Product, { through: "CatalogItems" });
-Product.belongsToMany(Catalog, { through: "CatalogItems" });
-
-
+Catalogue.hasMany(CatalogueItem, { foreignKey: 'catalogue_id' });
+CatalogueItem.belongsTo(Catalogue, { foreignKey: 'catalogue_id' });
 
 //sequelize.sync({ force: true });
 sequelize.sync();
@@ -63,7 +63,6 @@ const apiRouter = express.Router();
 apiRouter.use('/categories', categoryRouter);
 apiRouter.use('/auth', authRouter);
 apiRouter.use('/product', productRouter);
-apiRouter.use('/catalog', catalogRouter);
 
 app.use("/api", apiRouter);
 
