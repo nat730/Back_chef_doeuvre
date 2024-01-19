@@ -6,8 +6,6 @@ export const CatalogueItemModel = (sequelize: Sequelize) => {
       price_unity: DataTypes.FLOAT,
       product_id: DataTypes.INTEGER,
       catalogue_id: DataTypes.INTEGER,
-    }, {
-      timestamps: false,
     });
   };
   

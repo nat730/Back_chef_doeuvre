@@ -7,7 +7,5 @@ export const CustomerModel = (sequelize: Sequelize) => {
     email: DataTypes.STRING,
     phone: DataTypes.STRING,
     address: DataTypes.STRING,
-  }, {
-    timestamps: false, // Désactive les timestamps
   });
 };
