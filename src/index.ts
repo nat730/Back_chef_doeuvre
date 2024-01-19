@@ -11,13 +11,14 @@ import { OrderItemModel } from "./models/order_item";
 import { OrderModel } from "./models/order";
 import { ProductModel } from "./models/product";
 import { BlackListModel } from "./models/black_list";
-import { CatalogueModel } from "./models/catalogue";
-import { CatalogueItemModel } from "./models/catalogue_items";
+import { CatalogModel } from "./models/catalog";
 
 // Importez les routes
 import { categoryRouter } from "./router/Category";
 import { authRouter } from "./router/Customer";
 import { productRouter } from "./router/Product";
+import { catalogRouter } from "./router/Catalog";
+
 
 // Initialisez Sequelize avec votre configuration
 export const sequelize = new Sequelize({
@@ -32,8 +33,7 @@ export const OrderItem = OrderItemModel(sequelize);
 export const Order = OrderModel(sequelize);
 export const Product = ProductModel(sequelize);
 export const BlackList = BlackListModel(sequelize);
-export const Catalogue = CatalogueModel(sequelize);
-export const CatalogueItem = CatalogueItemModel(sequelize);
+export const Catalog = CatalogModel(sequelize);
 
 // Définissez les relations entre les modèles
 Customer.hasMany(Order, { foreignKey: 'customer_id' });
