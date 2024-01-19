@@ -48,8 +48,9 @@ OrderItem.belongsTo(Product, { foreignKey: 'product_id' });
 Category.hasOne(Product, { foreignKey: 'category_id' });
 Product.belongsTo(Category, { foreignKey: 'category_id' });
 
-Catalogue.hasMany(CatalogueItem, { foreignKey: 'catalogue_id' });
-CatalogueItem.belongsTo(Catalogue, { foreignKey: 'catalogue_id' });
+Catalog.belongsToMany(Product, { through: "CatalogItems" });
+Product.belongsToMany(Catalog, { through: "CatalogItems" });
+
 
 //sequelize.sync({ force: true });
 sequelize.sync();
