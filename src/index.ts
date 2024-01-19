@@ -62,6 +62,7 @@ const apiRouter = express.Router();
 apiRouter.use('/categories', categoryRouter);
 apiRouter.use('/auth', authRouter);
 apiRouter.use('/product', productRouter);
+apiRouter.use('/catalog', catalogRouter);
 
 app.use("/api", apiRouter);
 
