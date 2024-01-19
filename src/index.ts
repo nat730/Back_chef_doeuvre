@@ -34,7 +34,6 @@ export const Product = ProductModel(sequelize);
 export const BlackList = BlackListModel(sequelize);
 export const Catalog = CatalogModel(sequelize);
 
-// Définissez les relations entre les modèles
 Customer.hasMany(Order, { foreignKey: 'customer_id' });
 Order.belongsTo(Customer, { foreignKey: 'customer_id' });
 
