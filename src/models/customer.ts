@@ -1,18 +1,13 @@
-import { DataTypes, Sequelize } from "sequelize"
+import { DataTypes, Sequelize } from "sequelize";
 
 export const CustomerModel = (sequelize: Sequelize) => {
   return sequelize.define('customer', {
-    id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      primaryKey: true,
-    },
-    password: DataTypes.STRING,
-    firstname: DataTypes.STRING,
-    lastname: DataTypes.STRING,
+    first_name: DataTypes.STRING,
+    last_name: DataTypes.STRING,
     email: DataTypes.STRING,
     phone: DataTypes.STRING,
-  }    , {
+    address: DataTypes.STRING,
+  }, {
     timestamps: false, // Désactive les timestamps
   });
 };
