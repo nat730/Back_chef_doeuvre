@@ -55,7 +55,7 @@ Product.belongsToMany(Catalog, { through: "CatalogItems" });
 
 
 
-sequelize.sync({ force: true });
+//sequelize.sync({ force: true });
 sequelize.sync();
 
 // Configuration d'Express et écoute sur le port
