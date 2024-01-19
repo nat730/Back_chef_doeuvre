@@ -1,22 +1,16 @@
 import { DataTypes, Sequelize } from "sequelize";
 
 export const OrderItemModel = (sequelize: Sequelize) => {
-  return sequelize.define('orderitem', {
-    id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      primaryKey: true,
-    },
+  return sequelize.define('order_item', {
     quantity: DataTypes.INTEGER,
-    price: DataTypes.FLOAT,
-    Num_Order: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'OrderModel',
-        key: 'ID',
-      },
-    },
-  }    , {
-    timestamps: false, // Désactive les timestamps
+    price_by_unity: DataTypes.FLOAT,
+    unity_value: DataTypes.FLOAT,
+    unity_symbol: DataTypes.STRING,
+    price_asso: DataTypes.FLOAT,
+    price_per_kg_asso: DataTypes.FLOAT,
+    order_id: DataTypes.INTEGER,
+    product_id: DataTypes.INTEGER,
+  }, {
+    timestamps: false,
   });
 };

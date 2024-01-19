@@ -2,14 +2,13 @@ import { DataTypes, Sequelize } from "sequelize"
 
 export const OrderModel = (sequelize: Sequelize) => {
   return sequelize.define('order', {
-    id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      primaryKey: true,
-    },
     order_date: DataTypes.DATE,
-    status: DataTypes.STRING,
-  }    , {
-    timestamps: false, // Désactive les timestamps
+    status: DataTypes.ENUM('payed','canceled', 'completed'),
+    defaultValue: 'pending',
+    collect_schedule: DataTypes.DATE,
+    customer_id: DataTypes.INTEGER,
+  }, {
+    timestamps: false,
   });
 };
+

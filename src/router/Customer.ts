@@ -18,8 +18,7 @@ authRouter.put('/email/:id', authenticationMiddleware, async (req: Request, res:
     if (!user) {
       return res.status(404).json({ error: 'Utilisateur non trouvé.' });
     }
-//@ts-ignore
-    if (currentMail !== user.email) {
+    if (currentMail !== user.dataValues.email) {
       return res.status(401).json({ error: 'Mail actuel incorrect.' });
     }
 
@@ -52,8 +51,7 @@ authRouter.put('/password/:id', authenticationMiddleware, async (req: Request, r
       return res.status(404).json({ error: 'Utilisateur non trouvé.' });
     }
 
-    //@ts-ignore
-    const passwordMatch = await bcrypt.compare(currentPassword, user.password);
+    const passwordMatch = await bcrypt.compare(currentPassword, user.dataValues.password);
 
     if (!passwordMatch) {
       return res.status(401).json({ error: 'Mot de passe actuel incorrect.' });
@@ -82,8 +80,7 @@ authRouter.put('/phone/:id', authenticationMiddleware, async (req: Request, res:
       return res.status(404).json({ error: 'Utilisateur non trouvé.' });
     }
 
-    //@ts-ignore
-    if (currentphone !== user.phone) {
+    if (currentphone !== user.dataValues.phone) {
       return res.status(401).json({ error: 'Numéro de téléphone actuel incorrect.' });
     }
 
@@ -106,12 +103,10 @@ authRouter.post('/local', async (req: Request, res: Response) => {
   try {
     const { identifier, password } = req.body;
     const user = await Customer.findOne({ where: { email: identifier } });
-//@ts-ignore
-    if (!user || !(await bcrypt.compare(password, user.password))) {
+    if (!user || !(await bcrypt.compare(password, user.dataValues.password))) {
       return res.status(401).json({ error: 'Identifiants invalides' });
     }
-//@ts-ignore
-    const jwtToken = jwt.sign({ uuid: uuidv4(), userId: user.id }, 'secret', { expiresIn: '1h' });
+    const jwtToken = jwt.sign({ uuid: uuidv4(), userId: user.dataValues.id }, 'secret', { expiresIn: '1h' });
     res.status(200).json({ message: 'Connexion réussie', jwtToken });
   } catch (error) {
     console.error('Erreur lors de la connexion :', error);

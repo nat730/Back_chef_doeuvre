@@ -1,59 +1,67 @@
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
-import { Sequelize} from "sequelize";
+import { Sequelize } from "sequelize";
 
-//import model
+// Importez les modèles
 import { CategoryModel } from "./models/category";
 import { CustomerModel } from "./models/customer";
-import { OrderItemModel} from "./models/order_item";
+import { OrderItemModel } from "./models/order_item";
 import { OrderModel } from "./models/order";
 import { ProductModel } from "./models/product";
 import { BlackListModel } from "./models/black_list";
+import { CatalogueModel } from "./models/catalogue";
+import { CatalogueItemModel } from "./models/catalogue_items";
 
-//import router
-import { categoryRouter} from "./router/Category";
-import { authRouter} from "./router/Customer";
-import { productRouter} from "./router/Product";
+// Importez les routes
+import { categoryRouter } from "./router/Category";
+import { authRouter } from "./router/Customer";
+import { productRouter } from "./router/Product";
 
-
+// Initialisez Sequelize avec votre configuration
 export const sequelize = new Sequelize({
   dialect: 'sqlite',
   storage: 'db/database.sqlite'
 });
 
+// Définissez vos modèles
 export const Category = CategoryModel(sequelize);
 export const Customer = CustomerModel(sequelize);
 export const OrderItem = OrderItemModel(sequelize);
 export const Order = OrderModel(sequelize);
 export const Product = ProductModel(sequelize);
 export const BlackList = BlackListModel(sequelize);
+export const Catalogue = CatalogueModel(sequelize);
+export const CatalogueItem = CatalogueItemModel(sequelize);
 
+// Définissez les relations entre les modèles
 Customer.hasMany(Order, { foreignKey: 'customer_id' });
-Order.belongsTo(Customer, { foreignKey: 'id' });
+Order.belongsTo(Customer, { foreignKey: 'customer_id' });
 
 Order.hasMany(OrderItem, { foreignKey: 'order_id' });
-OrderItem.belongsTo(Order, { foreignKey: 'id' });
+OrderItem.belongsTo(Order, { foreignKey: 'order_id' });
 
 Product.hasMany(OrderItem, { foreignKey: 'product_id' });
-OrderItem.belongsTo(Product, { foreignKey: 'id' });
+OrderItem.belongsTo(Product, { foreignKey: 'product_id' });
 
-Category.hasOne(Product, { foreignKey: 'category_id'});
-Product.belongsTo(Category, { foreignKey: 'id' });
+Category.hasOne(Product, { foreignKey: 'category_id' });
+Product.belongsTo(Category, { foreignKey: 'category_id' });
 
+Catalogue.hasMany(CatalogueItem, { foreignKey: 'catalogue_id' });
+CatalogueItem.belongsTo(Catalogue, { foreignKey: 'catalogue_id' });
 
 // sequelize.sync({ force: true });
 sequelize.sync();
 
+// Configuration d'Express et écoute sur le port
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-
 const apiRouter = express.Router();
 apiRouter.use('/categories', categoryRouter);
 apiRouter.use('/auth', authRouter);
-apiRouter.use('/product',productRouter);
+apiRouter.use('/product', productRouter);
 
 app.use("/api", apiRouter);
 

@@ -21,8 +21,7 @@ productRouter.post('/', authenticationMiddleware, async (req: Request, res: Resp
       return res.status(404).json({ error: 'La catégorie spécifiée n\'existe pas.' });
     }
 
-    //@ts-ignore
-    const categoryName = categoryExists.name;
+    const categoryName = categoryExists.dataValues.name;
 
     // Création d'un nouveau produit
     const newProduct = await Product.create({
@@ -55,24 +54,15 @@ productRouter.get('/', async (req, res) => {
 
     // Transformez les données pour remplacer l'ID par le nom de la catégorie
     const transformedProducts = productsWithCategory.map(Product => ({
-      //@ts-ignore
-      id: Product.id,
-      //@ts-ignore
-      name: Product.name,
-      //@ts-ignore
-      description: Product.description,
-      //@ts-ignore
-      price: Product.price,
-      //@ts-ignore
-      priceperkg: Product.priceperkg,
-      //@ts-ignore
-      priceasso: Product.priceasso,
-      //@ts-ignore
-      priceperkgasso: Product.priceperkgasso,
-      //@ts-ignore
-      stock_quantity: Product.stock_quantity,
-      //@ts-ignore
-      categoryName: Product.category.name,
+      id: Product.dataValues.id,
+      name: Product.dataValues.name,
+      description: Product.dataValues.description,
+      price: Product.dataValues.price,
+      priceperkg: Product.dataValues.priceperkg,
+      priceasso: Product.dataValues.priceasso,
+      priceperkgasso: Product.dataValues.priceperkgasso,
+      stock_quantity: Product.dataValues.stock_quantity,
+      categoryName: Product.dataValues.category.name,
     }));
 
     res.json(transformedProducts);
