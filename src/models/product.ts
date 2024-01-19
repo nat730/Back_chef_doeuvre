@@ -12,7 +12,5 @@ export const ProductModel = (sequelize: Sequelize) => {
     price_per_kg_asso: DataTypes.FLOAT,
     stock_quantity: DataTypes.INTEGER,
     category_id: DataTypes.INTEGER,
-  }, {
-    timestamps: false,
   });
 };
