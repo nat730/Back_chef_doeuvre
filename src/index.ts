@@ -54,8 +54,6 @@ Product.belongsTo(Category, { foreignKey: 'category_id' });
 Catalog.belongsToMany(Product, { through: "CatalogItems" });
 Product.belongsToMany(Catalog, { through: "CatalogItems" });
 
-
-
 //sequelize.sync({ force: true });
 sequelize.sync();
 
@@ -69,7 +67,6 @@ apiRouter.use('/categories', categoryRouter);
 apiRouter.use('/auth', authRouter);
 apiRouter.use('/product', productRouter);
 apiRouter.use('/catalog', catalogRouter);
-
 
 app.use("/api", apiRouter);
 
