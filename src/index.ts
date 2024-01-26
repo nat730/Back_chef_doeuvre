@@ -4,7 +4,6 @@ import cors from "cors";
 import { Sequelize } from "sequelize";
 
 // Importez les modèles
-// Importez les modèles
 import { CategoryModel } from "./models/category";
 import { CustomerModel } from "./models/customer";
 import { OrderItemModel } from "./models/order_item";
