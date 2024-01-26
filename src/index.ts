@@ -4,13 +4,13 @@ import cors from "cors";
 import { Sequelize } from "sequelize";
 
 // Importez les modèles
+// Importez les modèles
 import { CategoryModel } from "./models/category";
 import { CustomerModel } from "./models/customer";
 import { OrderItemModel } from "./models/order_item";
 import { OrderModel } from "./models/order";
 import { ProductModel } from "./models/product";
 import { BlackListModel } from "./models/black_list";
-
 import { CatalogModel } from "./models/catalog";
 
 
@@ -19,6 +19,7 @@ import { categoryRouter } from "./router/Category";
 import { authRouter } from "./router/Customer";
 import { productRouter } from "./router/Product";
 import { catalogRouter } from "./router/Catalog";
+
 
 // Initialisez Sequelize avec votre configuration
 export const sequelize = new Sequelize({
@@ -36,7 +37,6 @@ export const BlackList = BlackListModel(sequelize);
 export const Catalog = CatalogModel(sequelize);
 
 
-// Définissez les relations entre les modèles
 Customer.hasMany(Order, { foreignKey: 'customer_id' });
 Order.belongsTo(Customer, { foreignKey: 'customer_id' });
 
@@ -48,6 +48,7 @@ OrderItem.belongsTo(Product, { foreignKey: 'product_id' });
 
 Category.hasOne(Product, { foreignKey: 'category_id' });
 Product.belongsTo(Category, { foreignKey: 'category_id' });
+
 
 
 Catalog.belongsToMany(Product, { through: "CatalogItems" });
