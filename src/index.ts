@@ -13,6 +13,7 @@ import { ProductModel } from "./models/product";
 import { BlackListModel } from "./models/black_list";
 import { CatalogModel } from "./models/catalog";
 
+
 // Importez les routes
 import { categoryRouter } from "./router/Category";
 import { authRouter } from "./router/Customer";
@@ -35,6 +36,7 @@ export const Product = ProductModel(sequelize);
 export const BlackList = BlackListModel(sequelize);
 export const Catalog = CatalogModel(sequelize);
 
+
 Customer.hasMany(Order, { foreignKey: 'customer_id' });
 Order.belongsTo(Customer, { foreignKey: 'customer_id' });
 
@@ -47,8 +49,11 @@ OrderItem.belongsTo(Product, { foreignKey: 'product_id' });
 Category.hasOne(Product, { foreignKey: 'category_id' });
 Product.belongsTo(Category, { foreignKey: 'category_id' });
 
+
+
 Catalog.belongsToMany(Product, { through: "CatalogItems" });
 Product.belongsToMany(Catalog, { through: "CatalogItems" });
+
 
 
 //sequelize.sync({ force: true });
@@ -64,6 +69,7 @@ apiRouter.use('/categories', categoryRouter);
 apiRouter.use('/auth', authRouter);
 apiRouter.use('/product', productRouter);
 apiRouter.use('/catalog', catalogRouter);
+
 
 app.use("/api", apiRouter);
 
