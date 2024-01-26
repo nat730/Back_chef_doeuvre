@@ -123,3 +123,7 @@ Authorization: Bearer {{token}}
   "stock_quantity": 100,
   "FKcategory": "Electronics"
 }
+
+###
+
+GET {{base_url}}/api/catalog/1
