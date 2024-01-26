@@ -10,7 +10,6 @@ import { OrderItemModel } from "./models/order_item";
 import { OrderModel } from "./models/order";
 import { ProductModel } from "./models/product";
 import { BlackListModel } from "./models/black_list";
-
 import { CatalogModel } from "./models/catalog";
 
 
@@ -53,8 +52,6 @@ Product.belongsTo(Category, { foreignKey: 'category_id' });
 Catalog.belongsToMany(Product, { through: "CatalogItems" });
 Product.belongsToMany(Catalog, { through: "CatalogItems" });
 
-
-
 //sequelize.sync({ force: true });
 sequelize.sync();
 
@@ -68,7 +65,6 @@ apiRouter.use('/categories', categoryRouter);
 apiRouter.use('/auth', authRouter);
 apiRouter.use('/product', productRouter);
 apiRouter.use('/catalog', catalogRouter);
-
 
 app.use("/api", apiRouter);
 
