@@ -1,7 +1,7 @@
 import { DataTypes, Sequelize } from "sequelize";
 
 export const OrderItemModel = (sequelize: Sequelize) => {
-  return sequelize.define('order_item', {
+  return sequelize.define("order_item", {
     quantity: DataTypes.INTEGER,
     price_by_unity: DataTypes.FLOAT,
     unity_value: DataTypes.FLOAT,
