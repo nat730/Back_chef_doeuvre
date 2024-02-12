@@ -3,8 +3,6 @@ name: Build
 on:
   workflow_run:
     workflows: ["Code Coverage"]
-    types:
-      - completed
 
 jobs:
   on-success:
