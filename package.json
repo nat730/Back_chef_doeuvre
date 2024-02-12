@@ -37,6 +37,8 @@
     "dev": "concurrently -k -n \"Typescript,Node\" -p \"[{name}]\" -c \"blue,green\" \"tsc --watch\" \"nodemon dist/index.js\"",
     "start": "tsc && node dist/index.js",
     "prepare": "husky",
+    "husky": "npm run prettier-format && npm run lint"
+,
     "prettier-format": "prettier --config .prettierrc 'src/**/*.ts' --write",
     "lint" : "eslint . --ext .ts"
   },
