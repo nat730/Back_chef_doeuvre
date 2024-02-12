@@ -1,8 +1,10 @@
 name: Build
 
 on:
-  workflow_run:
-    workflows: ["Code Coverage"]
+  push:
+        branches:
+            - "main"
+            - "develop"
 
 jobs:
   on-success:
