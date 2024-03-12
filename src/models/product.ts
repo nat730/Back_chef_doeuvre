@@ -6,7 +6,7 @@ export const ProductModel = (sequelize: Sequelize) => {
     description: DataTypes.STRING,
     price_unity: DataTypes.FLOAT,
     unity_value: DataTypes.FLOAT,
-    unity_symbol: DataTypes.ENUM('Litre','KiloGrammes','unity'),
+    unity_symbol: DataTypes.ENUM('litre','kilogramme','unit'),
     price_asso: DataTypes.FLOAT,
     price_per_kg_asso: DataTypes.FLOAT,
     stock_quantity: DataTypes.INTEGER,
