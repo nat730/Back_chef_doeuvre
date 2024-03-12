@@ -5,7 +5,7 @@ import { Sequelize } from "sequelize";
 
 // Importez les modèles
 import { CategoryModel } from "./models/category";
-import { CustomerModel } from "./customer";
+import { CustomerModel } from "./models/customer";
 import { OrderItemModel } from "./models/order_item";
 import { OrderModel } from "./models/order";
 import { ProductModel } from "./models/product";
