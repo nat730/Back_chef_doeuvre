@@ -1,37 +1,42 @@
-import "dotenv/config";
-import express from "express";
-import cors from "cors";
-import { Sequelize } from "sequelize";
+  import "dotenv/config";
+  import express from "express";
+  import cors from "cors";
+  import { Sequelize } from "sequelize";
 
-// Importez les modèles
-import { CategoryModel } from "./models/category";
-import { CustomerModel } from "./models/customer";
-import { OrderItemModel } from "./models/order_item";
-import { OrderModel } from "./models/order";
-import { ProductModel } from "./models/product";
-import { BlackListModel } from "./models/black_list";
-import { CatalogModel } from "./models/catalog";
+  // Importez les modèles
+  import { CategoryModel } from "./models/category";
+  import { CustomerModel } from "./models/customer";
+  import { OrderItemModel } from "./models/order_item";
+  import { OrderModel } from "./models/order";
+  import { ProductModel } from "./models/product";
+  import { BlackListModel } from "./models/black_list";
+  import { CatalogModel } from "./models/catalog";
 
-// Importez les routes
-import { categoryRouter } from "./router/Category";
-import { authRouter } from "./router/Customer";
-import { productRouter } from "./router/Product";
-import { catalogRouter } from "./router/Catalog";
+  // Importez les routes
+  import { categoryRouter } from "./router/Category";
+  import { authRouter } from "./router/Customer";
+  import { productRouter } from "./router/Product";
+  import { catalogRouter } from "./router/Catalog";
 
-// Initialisez Sequelize avec votre configuration
-export const sequelize = new Sequelize({
-  dialect: "sqlite",
-  storage: "db/database.sqlite",
-});
+  // Initialisez Sequelize avec votre configuration
+  const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
+    host: process.env.DB_HOST,
+    dialect: 'postgres',
+    dialectOptions: {
+      ssl: process.env.DB_SSLMODE === 'require' ? { require: true, rejectUnauthorized: false } : {}
+    }
+  });
+  
+  
+  // Définissez vos modèles
+  export const Category = CategoryModel(sequelize);
+  export const Customer = CustomerModel(sequelize);
+  export const OrderItem = OrderItemModel(sequelize);
+  export const Order = OrderModel(sequelize);
+  export const Product = ProductModel(sequelize);
+  export const BlackList = BlackListModel(sequelize);
+  export const Catalog = CatalogModel(sequelize);
 
-// Définissez vos modèles
-export const Category = CategoryModel(sequelize);
-export const Customer = CustomerModel(sequelize);
-export const OrderItem = OrderItemModel(sequelize);
-export const Order = OrderModel(sequelize);
-export const Product = ProductModel(sequelize);
-export const BlackList = BlackListModel(sequelize);
-export const Catalog = CatalogModel(sequelize);
 
 Customer.hasMany(Order, { foreignKey: "customer_id" });
 Order.belongsTo(Customer, { foreignKey: "customer_id" });
@@ -51,23 +56,22 @@ Category.hasOne(Product, { foreignKey: 'category_id' });
 Catalog.belongsToMany(Product, { through: "CatalogItems", foreignKey: 'catalog_id' });
 Product.belongsToMany(Catalog, { through:"CatalogItems", foreignKey: 'product_id' });
 
+  // sequelize.sync({ force: true });
+  sequelize.sync();
 
-sequelize.sync({ force: true });
-sequelize.sync();
+  // Configuration d'Express et écoute sur le port
+  const app = express();
+  app.use(cors());
+  app.use(express.json());
 
-// Configuration d'Express et écoute sur le port
-const app = express();
-app.use(cors());
-app.use(express.json());
+  const apiRouter = express.Router();
+  apiRouter.use("/categories", categoryRouter);
+  apiRouter.use("/auth", authRouter);
+  apiRouter.use("/product", productRouter);
+  apiRouter.use("/catalog", catalogRouter);
 
-const apiRouter = express.Router();
-apiRouter.use("/categories", categoryRouter);
-apiRouter.use("/auth", authRouter);
-apiRouter.use("/product", productRouter);
-apiRouter.use("/catalog", catalogRouter);
+  app.use("/api", apiRouter);
 
-app.use("/api", apiRouter);
-
-app.listen(process.env.PORT, () => {
-  console.log(`Example app listening on port ${process.env.PORT}!`);
-});
+  app.listen(process.env.PORT, () => {
+    console.log(`Example app listening on port ${process.env.PORT}!`);
+  });
