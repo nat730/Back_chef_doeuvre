@@ -12,11 +12,13 @@
   import { BlackListModel } from "./models/black_list";
   import { CatalogModel } from "./models/catalog";
 
+
   // Importez les routes
   import { categoryRouter } from "./router/Category";
   import { authRouter } from "./router/Customer";
   import { productRouter } from "./router/Product";
   import { catalogRouter } from "./router/Catalog";
+
 
   // Initialisez Sequelize avec votre configuration
   const sequelize = new Sequelize(process.env.DB_NAME!, process.env.DB_USER!, process.env.DB_PASSWORD, {
