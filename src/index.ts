@@ -5,7 +5,7 @@ import { Sequelize } from "sequelize";
 
 // Importez les modèles
 import { CategoryModel } from "./models/category";
-import { CustomerModel } from "./models/customer";
+import { CustomerModel } from "./customer";
 import { OrderItemModel } from "./models/order_item";
 import { OrderModel } from "./models/order";
 import { ProductModel } from "./models/product";
@@ -45,10 +45,7 @@ OrderItem.belongsTo(Product, { foreignKey: "product_id" });
 Category.hasOne(Product, { foreignKey: "category_id" });
 Product.belongsTo(Category, { foreignKey: "category_id" });
 
-Catalog.belongsToMany(Product, { through: "CatalogItems" });
-Product.belongsToMany(Catalog, { through: "CatalogItems" });
-
-//sequelize.sync({ force: true });
+sequelize.sync({ force: true });
 sequelize.sync();
 
 // Configuration d'Express et écoute sur le port
