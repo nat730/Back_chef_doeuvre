@@ -5,7 +5,7 @@ import { Sequelize } from "sequelize";
 
 // Importez les modèles
 import { CategoryModel } from "./models/category";
-import { CustomerModel } from "./models/customer";
+import { CustomerModel } from "./customer";
 import { OrderItemModel } from "./models/order_item";
 import { OrderModel } from "./models/order";
 import { ProductModel } from "./models/product";
@@ -42,8 +42,15 @@ OrderItem.belongsTo(Order, { foreignKey: "order_id" });
 Product.hasMany(OrderItem, { foreignKey: "product_id" });
 OrderItem.belongsTo(Product, { foreignKey: "product_id" });
 
-Category.hasOne(Product, { foreignKey: "category_id" });
-Product.belongsTo(Category, { foreignKey: "category_id" });
+OrderItem.belongsToMany(Product, { through: "CatalogItems", foreignKey: 'catalog_id' });
+Product.belongsToMany(OrderItem, { through:"CatalogItems", foreignKey: 'product_id' });
+  
+Product.belongsTo(Category, { foreignKey: 'category_id' });
+Category.hasOne(Product, { foreignKey: 'category_id' });
+
+Catalog.belongsToMany(Product, { through: "CatalogItems", foreignKey: 'catalog_id' });
+Product.belongsToMany(Catalog, { through:"CatalogItems", foreignKey: 'product_id' });
+
 
 sequelize.sync({ force: true });
 sequelize.sync();
