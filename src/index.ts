@@ -48,7 +48,6 @@ Category.hasOne(Product, { foreignKey: 'category_id' });
 Catalog.belongsToMany(Product, { through: "CatalogItems", foreignKey: 'catalog_id' });
 Product.belongsToMany(Catalog, { through:"CatalogItems", foreignKey: 'product_id' });
 
-
 sequelize.sync({ force: true });
 sequelize.sync();
 

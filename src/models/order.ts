@@ -5,6 +5,7 @@ export const OrderModel = (sequelize: Sequelize) => {
     order_date: DataTypes.DATE,
     status: DataTypes.ENUM('payed','canceled', 'pending'),
     defaultValue: 'pending',
+
     collect_schedule: DataTypes.DATE,
   });
 };
