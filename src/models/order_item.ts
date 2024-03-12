@@ -5,10 +5,8 @@ export const OrderItemModel = (sequelize: Sequelize) => {
     quantity: DataTypes.INTEGER,
     price_by_unity: DataTypes.FLOAT,
     unity_value: DataTypes.FLOAT,
-    unity_symbol: DataTypes.STRING,
+    unity_symbol: DataTypes.ENUM('Litre','KiloGrammes','unity'),
     price_asso: DataTypes.FLOAT,
     price_per_kg_asso: DataTypes.FLOAT,
-    order_id: DataTypes.INTEGER,
-    product_id: DataTypes.INTEGER,
   });
 };
