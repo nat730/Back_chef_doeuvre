@@ -11,6 +11,7 @@
   import { ProductModel } from "./models/product";
   import { BlackListModel } from "./models/black_list";
   import { CatalogModel } from "./models/catalog";
+  import { CatalogItemModel } from "./models/catalog_item";
 
 
   // Importez les routes
@@ -26,8 +27,8 @@
     dialect: 'postgres',
     dialectOptions: { ssl: true, }
   });
-  
-  
+
+
   // Définissez vos modèles
   export const Category = CategoryModel(sequelize);
   export const Customer = CustomerModel(sequelize);
@@ -36,6 +37,7 @@
   export const Product = ProductModel(sequelize);
   export const BlackList = BlackListModel(sequelize);
   export const Catalog = CatalogModel(sequelize);
+  export const CatalogItem = CatalogItemModel(sequelize);
 
 
 Customer.hasMany(Order, { foreignKey: "customer_id" });
@@ -49,15 +51,15 @@ OrderItem.belongsTo(Product, { foreignKey: "product_id" });
 
 OrderItem.belongsToMany(Product, { through: "CatalogItems", foreignKey: 'catalog_id' });
 Product.belongsToMany(OrderItem, { through:"CatalogItems", foreignKey: 'product_id' });
-  
+
 Product.belongsTo(Category, { foreignKey: 'category_id' });
 Category.hasOne(Product, { foreignKey: 'category_id' });
 
-Catalog.belongsToMany(Product, { through: "CatalogItems", foreignKey: 'catalog_id' });
-Product.belongsToMany(Catalog, { through:"CatalogItems", foreignKey: 'product_id' });
+Catalog.belongsToMany(Product, { through: CatalogItem, foreignKey: 'catalog_id' });
+Product.belongsToMany(Catalog, { through: CatalogItem, foreignKey: 'product_id' });
 
-  // sequelize.sync({ force: true });
-  sequelize.sync();
+sequelize.sync({ force: true });
+// sequelize.sync();
 
   // Configuration d'Express et écoute sur le port
   const app = express();
