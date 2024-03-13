@@ -10,32 +10,32 @@ const authenticationMiddleware = async (
   const authorizationHeader = req.headers.authorization;
 
   if (!authorizationHeader) {
-    return res
-      .status(401)
-      .json({ error: "Token manquant. Authentification requise." });
+    return res.status(401).json({ error: "Token manquant. Authentification requise." });
   }
 
   const [bearer, token] = authorizationHeader.split(" ");
 
   if (bearer !== "Bearer" || !token) {
-    return res
-      .status(401)
-      .json({ error: "Format de token incorrect. Authentification requise." });
+    return res.status(401).json({ error: "Format de token incorrect. Authentification requise." });
   }
 
   try {
-    const decoded = jwt.verify(token, "secret");
+    const decoded = jwt.verify(token, "secret") as {
+      role: string; userId: number
+    };
+    console.log(decoded);
 
     const isBlacklisted = await BlackList.findOne({ where: { token: token } });
 
-    if (!isBlacklisted) {
-      //@ts-ignore
-      req.user = decoded;
-      next();
+      if (!isBlacklisted) {
+        (req.customer as any) = {
+          userId: decoded.userId,
+          role: decoded.role
+        };
+        console.log(decoded.role);
+        next();
     } else {
-      return res
-        .status(401)
-        .json({ error: "Token invalide. Authentification requise. Prout" });
+      return res.status(401).json({ error: "Token invalide. Authentification requise." });
     }
   } catch (error) {
     return res
