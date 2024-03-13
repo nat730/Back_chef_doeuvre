@@ -4,6 +4,7 @@ export const ProductModel = (sequelize: Sequelize) => {
   return sequelize.define("product", {
     name: DataTypes.STRING,
     description: DataTypes.STRING,
-    unit_value: DataTypes.ENUM('litre','kilogramme','unit'),
+    category_id: DataTypes.INTEGER,
+    unit_value: DataTypes.ENUM('litre','kilogramme','unit')
   });
 };
