@@ -3,7 +3,6 @@ import { Category } from "..";
 import authenticationMiddleware from "../middleware/middleware_jws";
 
 export const categoryRouter = Router();
-categoryRouter.use(authenticationMiddleware);
 
 categoryRouter.post("/", async (req: Request, res: Response) => {
   try {

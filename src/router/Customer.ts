@@ -6,7 +6,6 @@ import { v4 as uuidv4 } from "uuid";
 import jwt from "jsonwebtoken";
 
 export const authRouter = Router();
-authRouter.use(authenticationMiddleware);
 
 // Update Email Route
 authRouter.put("/email/:id", async (req: Request, res: Response) => {

@@ -3,7 +3,6 @@ import { Product, Category } from "..";
 import authenticationMiddleware from "../middleware/middleware_jws";
 
 export const productRouter = Router();
-productRouter.use(authenticationMiddleware);
 
 // Create a new product
 productRouter.post("/", async (req: Request, res: Response) => {

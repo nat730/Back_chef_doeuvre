@@ -3,7 +3,6 @@ import { Catalog, Category } from "..";
 import authenticationMiddleware from "../middleware/middleware_jws";
 
 export const catalogRouter = Router();
-catalogRouter.use(authenticationMiddleware);
 
 // Create - Ajouter un nouveau catalogue
 catalogRouter.post("/", async (req: Request, res: Response) => {
