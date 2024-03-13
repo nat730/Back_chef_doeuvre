@@ -1,10 +1,12 @@
 import { Request, Response, Router } from "express";
 import { Category } from "..";
-import authenticationMiddleware from "../middleware/middleware_jws";
+import authenticationMiddleware from "../middleware/middleware_connexion";
+import adminMiddleware from "../middleware/middleware_admin";
+
 
 export const categoryRouter = Router();
 
-categoryRouter.post("/", async (req: Request, res: Response) => {
+categoryRouter.post("/",authenticationMiddleware,adminMiddleware, async (req: Request, res: Response) => {
   try {
     const { name, description } = req.body;
     const newCategory = await Category.create({ name, description });
@@ -15,7 +17,7 @@ categoryRouter.post("/", async (req: Request, res: Response) => {
   }
 });
 
-categoryRouter.delete("/:id", async (req, res) => {
+categoryRouter.delete("/:id",authenticationMiddleware,adminMiddleware, async (req, res) => {
   try {
     const categoryId = req.params.id;
     const categoryToDelete = await Category.findByPk(categoryId);
@@ -36,7 +38,7 @@ categoryRouter.delete("/:id", async (req, res) => {
   }
 });
 
-categoryRouter.delete("/", async (req, res) => {
+categoryRouter.delete("/",authenticationMiddleware,adminMiddleware, async (req, res) => {
   try {
     await Category.destroy({ where: {} });
     res
@@ -80,7 +82,7 @@ categoryRouter.get("/:id", async (req: Request, res: Response) => {
   }
 });
 
-categoryRouter.put("/:id", async (req, res) => {
+categoryRouter.put("/:id",authenticationMiddleware,adminMiddleware, async (req, res) => {
   try {
     const categoryId = req.params.id;
     const { name, description } = req.body;

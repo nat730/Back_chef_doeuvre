@@ -1,5 +1,5 @@
 import { Request, Response, Router } from "express";
-import authenticationMiddleware from "../middleware/middleware_jws";
+import authenticationMiddleware from "../middleware/middleware_connexion";
 import { Customer, BlackList } from "..";
 import bcrypt from "bcrypt";
 import { v4 as uuidv4 } from "uuid";
@@ -8,7 +8,7 @@ import jwt from "jsonwebtoken";
 export const authRouter = Router();
 
 // Update Email Route
-authRouter.put("/email/:id", async (req: Request, res: Response) => {
+authRouter.put("/email/:id",authenticationMiddleware, async (req: Request, res: Response) => {
   try {
     const userId = req.params.id;
     const { currentMail, mail, mailConfirmation } = req.body;
@@ -41,7 +41,7 @@ authRouter.put("/email/:id", async (req: Request, res: Response) => {
 });
 
 // Update Password Route
-authRouter.put("/password/:id", async (req: Request, res: Response) => {
+authRouter.put("/password/:id",authenticationMiddleware, async (req: Request, res: Response) => {
   try {
     const userId = req.params.id;
     const { currentPassword, password, passwordConfirmation } = req.body;
@@ -78,7 +78,7 @@ authRouter.put("/password/:id", async (req: Request, res: Response) => {
 });
 
 // Update Phone Route
-authRouter.put("/phone/:id", async (req: Request, res: Response) => {
+authRouter.put("/phone/:id",authenticationMiddleware, async (req: Request, res: Response) => {
   try {
     const userId = req.params.id;
     const { currentphone, phone, phoneConfirmation } = req.body;
@@ -119,7 +119,7 @@ authRouter.post("/local", async (req: Request, res: Response) => {
       return res.status(401).json({ error: "Identifiants invalides" });
     }
     const jwtToken = jwt.sign(
-      { uuid: uuidv4(), userId: user.dataValues.id },
+      { userId: user.dataValues.id, role: user.dataValues.role },
       "secret",
       { expiresIn: "1h" },
     );
@@ -131,6 +131,7 @@ authRouter.post("/local", async (req: Request, res: Response) => {
       .json({ message: "Erreur interne du serveur", error: error });
   }
 });
+
 
 // Logout Route
 authRouter.post("/local/logout", async (req, res) => {
@@ -164,7 +165,7 @@ authRouter.post("/local/logout", async (req, res) => {
     // Enregistrement de la déconnexion dans la base de données
     await BlackList.create({ token: token });
 
-    return res.status(204).end();
+    return res.status(204).json({ error: "deconnexion effectuer avec succes" });
   } catch (error) {
     console.error("Error during logout:", error);
     return res.status(500).json({ error: "Internal server error" });
@@ -174,14 +175,14 @@ authRouter.post("/local/logout", async (req, res) => {
 // Register Route
 authRouter.post("/local/register", async (req: Request, res: Response) => {
   try {
-    const { password, firstname, lastname, email, phone } = req.body;
+    const { password, firstname, lastname, email, phone,address,role } = req.body;
 
-    if (!password || !firstname || !lastname || !email || !phone) {
+    if (!password || !firstname || !lastname || !email || !phone|| !address) {
       return res
-        .status(400)
-        .json({
-          error: "Veuillez fournir toutes les informations nécessaires.",
-        });
+      .status(400)
+      .json({
+        error: "Veuillez fournir toutes les informations nécessaires.",password, firstname, lastname, email, phone,address
+      });
     }
 
     const existingCustomer = await Customer.findOne({ where: { email } });
@@ -197,6 +198,8 @@ authRouter.post("/local/register", async (req: Request, res: Response) => {
       lastname,
       email,
       phone,
+      address,
+      role
     });
 
     const result = newCustomer.dataValues;
