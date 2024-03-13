@@ -1,5 +1,4 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiOGNkY2M3ZWMtZTMyNS00ZDhkLWEwMWUtZmQ1MDA2Yjc1OTIzIiwidXNlcklkIjoxLCJpYXQiOjE3MDUzMDg4NzcsImV4cCI6MTcwNTMxMjQ3N30.I9t0ThVV0q_KW5mA4U9P1M6-o_q6lCX2sX9lLm0A5ws
-
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcxMDM0MjA2MiwiZXhwIjoxNzEwMzQ1NjYyfQ.5YwNEIuUKihzCUcORL1J8n80USGGMJA0w90irvZvQ1k
 @base_url= http://localhost:3000
 
 ###CATEGORIES
@@ -10,7 +9,7 @@ Authorization: Bearer {{token}}
 {
   "name": "Electronics",
   "description": "Electronic devices and gadgets"
-  }
+}
 ###
 DELETE {{base_url}}/api/categories/
 Content-Type: application/json
@@ -30,8 +29,8 @@ Authorization: Bearer {{token}}
 
 {
   "name": "Electronics",
-  "description": "Electronic devices and gadgets",
-}
+  "description": "Electronic devices and gadgets"
+  }
 
 ###Customer
 PUT {{base_url}}/api/auth/email/1
@@ -87,43 +86,23 @@ Content-Type: application/json
   "lastname": "Doe",
   "email": "john.doe@example.com",
   "phone": "123456789",
-  "password": "password123"
+  "password": "password123",
+  "address": "4 rue moby dick",
+  "role": "admin"
 }
-###product(wip)
+###product
 POST {{base_url}}/api/product
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "name": "Nom du produit",
+  "name": "Nom du produit",   
   "description": "Description du produit",
-  "price": 10.99,
-  "priceperkg": 5.99,
-  "priceasso": 8.99,
-  "priceperkgasso": 4.99,
-  "stock_quantity": 100,
-  "category_id": 1
+  "unit_value":"unit",
+  "FKcategory": "Electronics"
 }
 ###
 GET {{base_url}}/api/product
 ###
 GET {{base_url}}/api/product/1
 ###
-PUT {{base_url}}/api/product/1
-Content-Type: application/json
-Authorization: Bearer {{token}}
-
-{
-  "name": "Nom du produit",
-  "description": "Description du produit",
-  "price": 10.99,
-  "priceperkg": 5.99,
-  "priceasso": 8.99,
-  "priceperkgasso": 4.99,
-  "stock_quantity": 100,
-  "FKcategory": "Electronics"
-}
-
-###
-
-GET {{base_url}}/api/catalog/1
