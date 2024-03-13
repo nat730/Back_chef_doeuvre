@@ -7,5 +7,10 @@ export const CustomerModel = (sequelize: Sequelize) => {
     email: DataTypes.STRING,
     phone: DataTypes.STRING,
     address: DataTypes.STRING,
+    password: DataTypes.STRING,
+    role: {
+      type: DataTypes.ENUM('admin','user'),
+      defaultValue: "user"
+    } 
   });
 };
