@@ -2,7 +2,6 @@ import { Request, Response, Router } from "express";
 import authenticationMiddleware from "../middleware/middleware_connexion";
 import { Customer, BlackList } from "..";
 import bcrypt from "bcrypt";
-import { v4 as uuidv4 } from "uuid";
 import jwt from "jsonwebtoken";
 
 export const authRouter = Router();

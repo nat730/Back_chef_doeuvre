@@ -3,7 +3,6 @@ import { Category } from "..";
 import authenticationMiddleware from "../middleware/middleware_connexion";
 import adminMiddleware from "../middleware/middleware_admin";
 
-
 export const categoryRouter = Router();
 
 categoryRouter.post("/",authenticationMiddleware,adminMiddleware, async (req: Request, res: Response) => {
