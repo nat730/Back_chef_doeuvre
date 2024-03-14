@@ -1,4 +1,4 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcxMDM0MjA2MiwiZXhwIjoxNzEwMzQ1NjYyfQ.5YwNEIuUKihzCUcORL1J8n80USGGMJA0w90irvZvQ1k
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcxMDQyODU5MiwiZXhwIjoxNzEwNDMyMTkyfQ.Q5nlln_ikXEW54RjDfT5eRfBWAbMvm21QANu4Lgut4Y
 @base_url= http://localhost:3000
 
 ###CATEGORIES
@@ -33,6 +33,8 @@ Authorization: Bearer {{token}}
   }
 
 ###Customer
+GET {{base_url}}/api/auth
+###
 PUT {{base_url}}/api/auth/email/1
 Content-Type: application/json
 Authorization: Bearer {{token}}
@@ -105,4 +107,41 @@ Authorization: Bearer {{token}}
 GET {{base_url}}/api/product
 ###
 GET {{base_url}}/api/product/1
+###CATALOG
+GET {{base_url}}/api/catalog/1
 ###
+GET {{base_url}}/api/catalog
+###
+POST {{base_url}}/api/catalog
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+"store": "Paris"
+}
+###
+PUT {{base_url}}/api/catalog/1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+"store": "Paris"
+}
+###ORDER
+POST {{base_url}}/api/order
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "order_date": "2023-03-15",
+  "status": "payed",
+  "collect_schedule": "2023-03-16" //besoin d'une date de livraison reelle ? 
+}
+###
+PUT {{base_url}}/api/order/status/3
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "status": "payed"
+}
