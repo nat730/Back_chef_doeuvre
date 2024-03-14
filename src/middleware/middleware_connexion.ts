@@ -28,7 +28,7 @@ const authenticationMiddleware = async (
     const isBlacklisted = await BlackList.findOne({ where: { token: token } });
 
       if (!isBlacklisted) {
-        (req.customer as any) = {
+        req.customer = {
           userId: decoded.userId,
           role: decoded.role
         };
