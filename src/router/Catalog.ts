@@ -1,15 +1,15 @@
 import { Request, Response, Router } from "express";
-import { Catalog, Category } from "..";
+import { Catalog } from "..";
 import authenticationMiddleware from "../middleware/middleware_connexion";
 import adminMiddleware from "../middleware/middleware_admin";
 
 export const catalogRouter = Router();
 
 // Create - Ajouter un nouveau catalogue
-catalogRouter.post("/",authenticationMiddleware,adminMiddleware, async (req: Request, res: Response) => {
+catalogRouter.post("/",adminMiddleware, async (req: Request, res: Response) => {
   try {
     const { store } = req.body;
-    const newCatalog = await Category.create({ store });
+    const newCatalog = await Catalog.create({ store });
     res.json(newCatalog);
   } catch (error) {
     console.error("Erreur lors de la création d'un catalogue :", error);
@@ -45,7 +45,7 @@ catalogRouter.get("/:catalogId", async (req, res) => {
 });
 
 // Update - Mettre à jour un catalogue spécifique par son ID
-catalogRouter.put("/:catalogId",authenticationMiddleware,adminMiddleware, async (req, res) => {
+catalogRouter.put("/:catalogId",adminMiddleware, async (req, res) => {
   const catalogId = req.params.catalogId;
 
   try {
@@ -63,7 +63,7 @@ catalogRouter.put("/:catalogId",authenticationMiddleware,adminMiddleware, async 
 });
 
 // Delete - Supprimer un catalogue spécifique par son ID
-catalogRouter.delete("/:catalogId",authenticationMiddleware,adminMiddleware, async (req, res) => {
+catalogRouter.delete("/:catalogId",adminMiddleware, async (req, res) => {
   const catalogId = req.params.catalogId;
 
   try {

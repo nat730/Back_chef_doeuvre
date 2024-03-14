@@ -5,7 +5,7 @@ const adminMiddleware = (
   res: Response,
   next: NextFunction
 ) => {
-  if ((req.customer as any).role === "admin") {
+  if (req.customer?.role === "admin") {
     next();
   } else {
     res.status(403).json({ error: "Accès refusé. Vous devez être un admin."});
