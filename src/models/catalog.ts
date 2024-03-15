@@ -11,7 +11,7 @@ export const CatalogModel = (sequelize: Sequelize) => {
     id: {
       primaryKey: true,
       type: DataTypes.INTEGER.UNSIGNED,
-      autoIncrement:true
+      autoIncrement: true
     },
     store: DataTypes.STRING,
   });

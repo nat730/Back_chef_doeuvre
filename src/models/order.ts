@@ -12,7 +12,7 @@ export const OrderModel = (sequelize: Sequelize) => {
     id: {
       primaryKey: true,
       type: DataTypes.INTEGER.UNSIGNED,
-      autoIncrement:true
+      autoIncrement: true
     },
     order_date: DataTypes.DATE,
     status: {
