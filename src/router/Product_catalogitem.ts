@@ -30,19 +30,18 @@ productCatalogItemRouter.post("/", authenticationMiddleware, adminMiddleware, as
         name,
         description,
         unit_value,
-        category_id: categoryExists.dataValues.id
+        category_id: categoryExists.id
       });
   
-      await CatalogItem.create({
+      const newCatalogItem = await CatalogItem.create({
         price,
         price_asso,
         image,
-        //@ts-ignore
         product_id: newProduct.id
       });
   
       // Réponse avec le nouveau produit créé
-      res.status(201).json({ newProduct, categoryName: categoryExists.dataValues.name });
+      res.status(201).json({ newProduct,newCatalogItem, categoryName: categoryExists.name });
     } catch (error) {
       console.error("Erreur lors de la création d'un produit :", error);
       res.status(500).json({ error: "Erreur interne du serveur" });
