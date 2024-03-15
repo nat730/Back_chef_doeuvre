@@ -15,12 +15,12 @@ export const OrderItemModel = (sequelize: Sequelize) => {
     id: {
       primaryKey: true,
       type: DataTypes.INTEGER.UNSIGNED,
-      autoIncrement:true
+      autoIncrement: true
     },
     quantity: DataTypes.INTEGER,
     price_by_unity: DataTypes.FLOAT,
     unity_value: DataTypes.FLOAT,
-    unity_symbol: DataTypes.ENUM('litre','kilogramme','unit'),
+    unity_symbol: DataTypes.ENUM('litre', 'kilogramme', 'unit'),
     price_asso: DataTypes.FLOAT,
     price_per_kg_asso: DataTypes.FLOAT,
   });

@@ -13,7 +13,7 @@ export const CatalogItemModel = (sequelize: Sequelize) => {
     id: {
       primaryKey: true,
       type: DataTypes.INTEGER.UNSIGNED,
-      autoIncrement:true
+      autoIncrement: true
     },
     price: DataTypes.FLOAT,
     price_asso: DataTypes.FLOAT,

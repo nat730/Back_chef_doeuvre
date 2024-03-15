@@ -16,7 +16,7 @@ export const CustomerModel = (sequelize: Sequelize) => {
     id: {
       primaryKey: true,
       type: DataTypes.INTEGER.UNSIGNED,
-      autoIncrement:true
+      autoIncrement: true
     },
     firstname: DataTypes.STRING,
     lastname: DataTypes.STRING,
@@ -25,8 +25,8 @@ export const CustomerModel = (sequelize: Sequelize) => {
     address: DataTypes.STRING,
     password: DataTypes.STRING,
     role: {
-      type: DataTypes.ENUM('admin','user'),
+      type: DataTypes.ENUM('admin', 'user'),
       defaultValue: "user"
-    } 
+    }
   });
 };

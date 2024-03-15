@@ -4,7 +4,7 @@ interface IProduct extends Model<InferAttributes<IProduct>, InferCreationAttribu
   id: CreationOptional<number>,
   name: string,
   description: string,
-  category_id: string,
+  category_id: number,
   unit_value: string
 }
 
