@@ -42,7 +42,7 @@ productRouter.post("/", authenticationMiddleware, adminMiddleware, async (req: R
     });
 
     // Réponse avec le nouveau produit créé
-    res.status(201).json({ newProduct, categoryName: categoryExists.dataValues.name });
+    res.status(201).json({ newProduct, categoryName: categoryExists.name });
   } catch (error) {
     console.error("Erreur lors de la création d'un produit :", error);
     res.status(500).json({ error: "Erreur interne du serveur" });
@@ -62,7 +62,7 @@ productRouter.get("/", async (req: Request, res: Response) => {
 
     const productsWithCategoryName = products.map(product => {
       return {
-        ...product.dataValues,
+        ...product,
       };
     });
     
@@ -91,7 +91,7 @@ productRouter.get("/:id", async (req: Request, res: Response) => {
     }
 
     const productWithCategoryName = {
-      ...productById.dataValues,
+      ...productById,
     };
 
     res.json(productWithCategoryName);
