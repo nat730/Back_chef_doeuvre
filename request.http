@@ -1,10 +1,9 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcxMDUxMzA0NCwiZXhwIjoxNzEwNTE2NjQ0fQ._n0mDnRhxHiezXsmWM8C-8xOUgPxzm2N_93fVWvo0b0
 @base_url= http://localhost:3000
 
 ###CATEGORIES
 POST {{base_url}}/api/categories/
 Content-Type: application/json
-Authorization: Bearer {{token}}
+Authorization: Bearer {{$dotenv Token}}
 
 {
   "name": "Electronics",
@@ -13,11 +12,11 @@ Authorization: Bearer {{token}}
 ###
 DELETE {{base_url}}/api/categories/
 Content-Type: application/json
-Authorization: Bearer {{token}}
+Authorization: Bearer {{$dotenv Token}}
 ###
 DELETE {{base_url}}/api/categories/2
 Content-Type: application/json
-Authorization: Bearer {{token}}
+Authorization: Bearer {{$dotenv Token}}
 ###
 GET {{base_url}}/api/categories
 ###
@@ -25,7 +24,7 @@ GET {{base_url}}/api/categories/3
 ###
 PUT {{base_url}}/api/categories/3
 Content-Type: application/json
-Authorization: Bearer {{token}}
+Authorization: Bearer {{$dotenv Token}}
 
 {
   "name": "Electronics",
@@ -37,7 +36,7 @@ GET {{base_url}}/api/auth
 ###
 PUT {{base_url}}/api/auth/email/1
 Content-Type: application/json
-Authorization: Bearer {{token}}
+Authorization: Bearer {{$dotenv Token}}
 
 {
   "currentMail": "john.doe@example.com",
@@ -47,7 +46,7 @@ Authorization: Bearer {{token}}
 ###
 
 PUT {{base_url}}/api/auth/password/1
-Authorization: Bearer {{token}}
+Authorization: Bearer {{$dotenv Token}}
 Content-Type: application/json
 
 {
@@ -58,7 +57,7 @@ Content-Type: application/json
 ###
 PUT {{base_url}}/api/auth/phone/1
 Content-Type: application/json
-Authorization: Bearer {{token}}
+Authorization: Bearer {{$dotenv Token}}
 
 {
   "currentphone": "123456789",
@@ -77,7 +76,7 @@ Content-Type: application/json
 ###
 POST {{base_url}}/api/auth/local/logout
 Content-Type: application/json
-Authorization: Bearer {{token}}
+Authorization: Bearer {{$dotenv Token}}
 
 ###
 POST {{base_url}}/api/auth/local/register
@@ -94,12 +93,12 @@ Content-Type: application/json
 }
 ###
 GET {{base_url}}/api/auth/local/user/me
-Authorization: Bearer {{token}}
+Authorization: Bearer {{$dotenv Token}}
 
 ###product
 POST {{base_url}}/api/product
 Content-Type: application/json
-Authorization: Bearer {{token}}
+Authorization: Bearer {{$dotenv Token}}
 
 {
   "name": "Nom du produit",   
@@ -118,7 +117,7 @@ GET {{base_url}}/api/catalog
 ###
 POST {{base_url}}/api/catalog
 Content-Type: application/json
-Authorization: Bearer {{token}}
+Authorization: Bearer {{$dotenv Token}}
 
 {
 "store": "Paris"
@@ -126,7 +125,7 @@ Authorization: Bearer {{token}}
 ###
 PUT {{base_url}}/api/catalog/1
 Content-Type: application/json
-Authorization: Bearer {{token}}
+Authorization: Bearer {{$dotenv Token}}
 
 {
 "store": "Paris"
@@ -134,7 +133,7 @@ Authorization: Bearer {{token}}
 ###ORDER
 POST {{base_url}}/api/order
 Content-Type: application/json
-Authorization: Bearer {{token}}
+Authorization: Bearer {{$dotenv Token}}
 
 {
   "order_date": "2023-03-15",
@@ -144,7 +143,7 @@ Authorization: Bearer {{token}}
 ###
 PUT {{base_url}}/api/order/status/3
 Content-Type: application/json
-Authorization: Bearer {{token}}
+Authorization: Bearer {{$dotenv Token}}
 
 {
   "status": "payed"
