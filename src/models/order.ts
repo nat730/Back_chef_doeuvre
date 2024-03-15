@@ -5,6 +5,7 @@ interface IOrder extends Model<InferAttributes<IOrder>, InferCreationAttributes<
   order_date: Date,
   status: string,
   collect_schedule: number,
+  customer_id:number
 }
 
 export const OrderModel = (sequelize: Sequelize) => {
@@ -20,5 +21,6 @@ export const OrderModel = (sequelize: Sequelize) => {
       defaultValue: "pending"
     },
     collect_schedule: DataTypes.DATE, //date de récupération
+    customer_id:DataTypes.INTEGER
   });
 };

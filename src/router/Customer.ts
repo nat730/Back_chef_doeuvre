@@ -7,7 +7,7 @@ import jwt from "jsonwebtoken";
 export const authRouter = Router();
 
 // Update Email Route
-authRouter.put("/email/:id",authenticationMiddleware, async (req: Request, res: Response) => {
+authRouter.put("/email/:id", authenticationMiddleware, async (req: Request, res: Response) => {
   try {
     const userId = req.params.id;
     const { currentMail, mail, mailConfirmation } = req.body;
@@ -17,7 +17,7 @@ authRouter.put("/email/:id",authenticationMiddleware, async (req: Request, res: 
     if (!user) {
       return res.status(404).json({ error: "Utilisateur non trouvé." });
     }
-    if (currentMail !== user.dataValues.email) {
+    if (currentMail !== user.email) {
       return res.status(401).json({ error: "Mail actuel incorrect." });
     }
 
@@ -40,7 +40,7 @@ authRouter.put("/email/:id",authenticationMiddleware, async (req: Request, res: 
 });
 
 // Update Password Route
-authRouter.put("/password/:id",authenticationMiddleware, async (req: Request, res: Response) => {
+authRouter.put("/password/:id", authenticationMiddleware, async (req: Request, res: Response) => {
   try {
     const userId = req.params.id;
     const { currentPassword, password, passwordConfirmation } = req.body;
@@ -59,7 +59,7 @@ authRouter.put("/password/:id",authenticationMiddleware, async (req: Request, re
 
     const passwordMatch = await bcrypt.compare(
       currentPassword,
-      user.dataValues.password,
+      user.password,
     );
 
     if (!passwordMatch) {
@@ -77,7 +77,7 @@ authRouter.put("/password/:id",authenticationMiddleware, async (req: Request, re
 });
 
 // Update Phone Route
-authRouter.put("/phone/:id",authenticationMiddleware, async (req: Request, res: Response) => {
+authRouter.put("/phone/:id", authenticationMiddleware, async (req: Request, res: Response) => {
   try {
     const userId = req.params.id;
     const { currentphone, phone, phoneConfirmation } = req.body;
@@ -88,7 +88,7 @@ authRouter.put("/phone/:id",authenticationMiddleware, async (req: Request, res: 
       return res.status(404).json({ error: "Utilisateur non trouvé." });
     }
 
-    if (currentphone !== user.dataValues.phone) {
+    if (currentphone !== user.phone) {
       return res
         .status(401)
         .json({ error: "Numéro de téléphone actuel incorrect." });
@@ -114,11 +114,11 @@ authRouter.post("/local", async (req: Request, res: Response) => {
   try {
     const { identifier, password } = req.body;
     const user = await Customer.findOne({ where: { email: identifier } });
-    if (!user || !(await bcrypt.compare(password, user.dataValues.password))) {
+    if (!user || !(await bcrypt.compare(password, user.password))) {
       return res.status(401).json({ error: "Identifiants invalides" });
     }
     const jwtToken = jwt.sign(
-      { userId: user.dataValues.id, role: user.dataValues.role },
+      { userId: user.id, role: user.role },
       "secret",
       { expiresIn: "1h" },
     );
@@ -172,16 +172,16 @@ authRouter.post("/local/logout", async (req, res) => {
 });
 
 // Register Route
-authRouter.post("/local/register", async (req: Request, res: Response) => {
+authRouter.post("/local/register", async (req, res) => {
   try {
-    const { password, firstname, lastname, email, phone,address,role } = req.body;
+    const { password, firstname, lastname, email, phone, address, role } = req.body;
 
-    if (!password || !firstname || !lastname || !email || !phone|| !address) {
+    if (!password || !firstname || !lastname || !email || !phone || !address) {
       return res
-      .status(400)
-      .json({
-        error: "Veuillez fournir toutes les informations nécessaires.",password, firstname, lastname, email, phone,address
-      });
+        .status(400)
+        .json({
+          error: "Veuillez fournir toutes les informations nécessaires.",
+        });
     }
 
     const existingCustomer = await Customer.findOne({ where: { email } });
@@ -201,12 +201,35 @@ authRouter.post("/local/register", async (req: Request, res: Response) => {
       role
     });
 
-    const result = newCustomer.dataValues;
-    delete result.password;
+    if (!newCustomer) {
+      throw new Error("Erreur lors de la création du client");
+    }
 
-    res.status(201).json(result);
+    const newCustomerClean
+      //: ICustomerClean 
+      = {
+      firstname,
+      lastname,
+      email,
+      phone,
+      address,
+      role
+    } //as ICustomerClean
+
+    res.status(201).json(newCustomerClean);
   } catch (error) {
     console.error("Erreur lors de l'inscription :", error);
     res.status(500).json({ error: "Erreur interne du serveur" });
   }
 });
+
+authRouter.get("/local/user/me", authenticationMiddleware, async (req, res) => {
+  const customer = await Customer.findOne({ where: { id: req.customer?.userId } });
+  if (customer) {
+    const user = { firstname: customer.firstname };
+    res.json(user);
+  } else {
+    res.status(401).json({ error: "Utilisateur non authentifié" });
+  }
+});
+
