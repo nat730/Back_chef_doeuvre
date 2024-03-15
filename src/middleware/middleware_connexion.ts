@@ -29,6 +29,7 @@ const authenticationMiddleware = async (
 
       if (!isBlacklisted) {
         req.customer = {
+
           userId: decoded.userId,
           role: decoded.role
         };

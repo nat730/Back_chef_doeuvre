@@ -1,11 +1,12 @@
 import { Request, Response, Router } from "express";
-import { Catalog } from "..";
+import { Catalog, Category } from "..";
+import authenticationMiddleware from "../middleware/middleware_connexion";
 import adminMiddleware from "../middleware/middleware_admin";
 
 export const catalogRouter = Router();
 
 // Create - Ajouter un nouveau catalogue
-catalogRouter.post("/",adminMiddleware, async (req: Request, res: Response) => {
+catalogRouter.post("/",authenticationMiddleware,adminMiddleware, async (req: Request, res: Response) => {
   try {
     const { store } = req.body;
     const newCatalog = await Catalog.create({ store });
@@ -44,7 +45,7 @@ catalogRouter.get("/:catalogId", async (req, res) => {
 });
 
 // Update - Mettre à jour un catalogue spécifique par son ID
-catalogRouter.put("/:catalogId",adminMiddleware, async (req, res) => {
+catalogRouter.put("/:catalogId",authenticationMiddleware,adminMiddleware, async (req, res) => {
   const catalogId = req.params.catalogId;
 
   try {
@@ -62,7 +63,7 @@ catalogRouter.put("/:catalogId",adminMiddleware, async (req, res) => {
 });
 
 // Delete - Supprimer un catalogue spécifique par son ID
-catalogRouter.delete("/:catalogId",adminMiddleware, async (req, res) => {
+catalogRouter.delete("/:catalogId",authenticationMiddleware,adminMiddleware, async (req, res) => {
   const catalogId = req.params.catalogId;
 
   try {

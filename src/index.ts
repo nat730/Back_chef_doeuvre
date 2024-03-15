@@ -41,6 +41,7 @@ export const Catalog = CatalogModel(sequelize);
 export const CatalogItem = CatalogItemModel(sequelize);
 
 
+
 Customer.hasMany(Order, { foreignKey: "customer_id" });
 Order.belongsTo(Customer, { foreignKey: "customer_id" });
 
@@ -51,13 +52,16 @@ Product.hasMany(OrderItem, { foreignKey: "product_id" });
 OrderItem.belongsTo(Product, { foreignKey: "product_id" });
 
 OrderItem.belongsToMany(Product, { through: "CatalogItem", foreignKey: 'catalog_id' });
+
 Product.belongsToMany(OrderItem, { through: "CatalogItem", foreignKey: 'product_id' });
+
 
 Product.belongsTo(Category, { foreignKey: 'category_id' });
 Category.hasOne(Product, { foreignKey: 'category_id' });
 
 Catalog.belongsToMany(Product, { through: CatalogItem, foreignKey: 'catalog_id' });
 Product.belongsToMany(Catalog, { through: CatalogItem, foreignKey: 'product_id' });
+
 
 // sequelize.sync({ force: true });
 sequelize.sync();
@@ -66,6 +70,7 @@ sequelize.sync();
 const app = express();
 app.use(cors());
 app.use(express.json());
+
 
 const apiRouter = express.Router();
 apiRouter.use("/categories", categoryRouter);

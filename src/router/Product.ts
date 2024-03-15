@@ -43,6 +43,7 @@ productRouter.post("/", authenticationMiddleware, adminMiddleware, async (req: R
 
     // Réponse avec le nouveau produit créé
     res.status(201).json({ newProduct, categoryName: categoryExists.name });
+
   } catch (error) {
     console.error("Erreur lors de la création d'un produit :", error);
     res.status(500).json({ error: "Erreur interne du serveur" });
@@ -92,6 +93,7 @@ productRouter.get("/:id", async (req: Request, res: Response) => {
 
     const productWithCategoryName = {
       ...productById,
+
     };
 
     res.json(productWithCategoryName);

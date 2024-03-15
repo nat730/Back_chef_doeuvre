@@ -22,12 +22,14 @@ export interface ICustomer extends ICustomerClean {
 }
 
 export const CustomerModel = (sequelize: Sequelize) => {
+
   return sequelize.define<ICustomer>("customer", {
     id: {
       primaryKey: true,
       type: DataTypes.INTEGER.UNSIGNED,
       autoIncrement: true
     },
+
     firstname: DataTypes.STRING,
     lastname: DataTypes.STRING,
     email: DataTypes.STRING,

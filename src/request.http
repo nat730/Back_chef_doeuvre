@@ -92,6 +92,7 @@ Content-Type: application/json
   "address": "4 rue moby dick",
   "role": "admin"
 }
+
 ###
 GET {{base_url}}/api/auth/local/user/me
 Authorization: Bearer {{token}}
@@ -149,3 +150,4 @@ Authorization: Bearer {{token}}
 {
   "status": "payed"
 }
+
