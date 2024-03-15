@@ -1,6 +1,5 @@
 import { Request, Response, Router } from "express";
 import { Catalog } from "..";
-import authenticationMiddleware from "../middleware/middleware_connexion";
 import adminMiddleware from "../middleware/middleware_admin";
 
 export const catalogRouter = Router();
