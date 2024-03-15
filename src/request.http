@@ -1,4 +1,4 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcxMDQyODU5MiwiZXhwIjoxNzEwNDMyMTkyfQ.Q5nlln_ikXEW54RjDfT5eRfBWAbMvm21QANu4Lgut4Y
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcxMDUxMzA0NCwiZXhwIjoxNzEwNTE2NjQ0fQ._n0mDnRhxHiezXsmWM8C-8xOUgPxzm2N_93fVWvo0b0
 @base_url= http://localhost:3000
 
 ###CATEGORIES
@@ -92,6 +92,10 @@ Content-Type: application/json
   "address": "4 rue moby dick",
   "role": "admin"
 }
+###
+GET {{base_url}}/api/auth/local/user/me
+Authorization: Bearer {{token}}
+
 ###product
 POST {{base_url}}/api/product
 Content-Type: application/json

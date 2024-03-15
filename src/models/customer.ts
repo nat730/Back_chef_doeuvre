@@ -1,14 +1,24 @@
 import { CreationOptional, DataTypes, InferAttributes, InferCreationAttributes, Model, Sequelize } from "sequelize";
 
-interface ICustomer extends Model<InferAttributes<ICustomer>, InferCreationAttributes<ICustomer>> {
+export interface ICustomerClean extends Model<InferAttributes<ICustomer>, InferCreationAttributes<ICustomer>> {
   id: CreationOptional<number>,
   firstname: string,
   lastname: string,
   email: string,
   phone: string,
   address: string,
-  password: string,
   role: string,
+}
+
+export interface ICustomer extends ICustomerClean {
+  id: CreationOptional<number>,
+  firstname: string,
+  lastname: string,
+  email: string,
+  phone: string,
+  address: string,
+  role: string,
+  password: string,
 }
 
 export const CustomerModel = (sequelize: Sequelize) => {
