@@ -38,7 +38,7 @@ productRouter.post("/", authenticationMiddleware, adminMiddleware, async (req: R
       name,
       description,
       unit_value,
-      category_id: category.dataValues.id
+      category_id: category.id
     });
 
     // Réponse avec le nouveau produit créé
