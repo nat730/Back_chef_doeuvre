@@ -1,7 +1,7 @@
 import { Sequelize, DataTypes, CreationOptional, InferAttributes, InferCreationAttributes, Model } from "sequelize";
 
 interface ICatalogitem extends Model<InferAttributes<ICatalogitem>, InferCreationAttributes<ICatalogitem>> {
-  id?: CreationOptional<number>,
+  id: CreationOptional<number>,
   price: number,
   price_asso: number,
   image: string,
