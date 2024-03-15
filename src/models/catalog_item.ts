@@ -18,6 +18,6 @@ export const CatalogItemModel = (sequelize: Sequelize) => {
     price: DataTypes.FLOAT,
     price_asso: DataTypes.FLOAT,
     image: DataTypes.STRING,
-    product_id: DataTypes.NUMBER
+    product_id: DataTypes.INTEGER
   });
 }

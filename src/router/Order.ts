@@ -16,9 +16,10 @@ orderRouter.post("/", async (req: Request, res: Response) => {
                 error: "Veuillez fournir toutes les informations nécessaires.", order_date, collect_schedule
             });
         }
-
+        if (customer_id) {
         const newOrder = await Order.create({ order_date, status, collect_schedule, customer_id });
         res.status(201).json(newOrder);
+    }
     } catch (error) {
         console.error(
             "Erreur lors de l'ajout de la commande",
