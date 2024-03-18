@@ -3,6 +3,7 @@ import authenticationMiddleware from "../middleware/middleware_connexion";
 import { Customer, BlackList } from "..";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { ICustomer, ICustomerCleanValue } from "../models/customer";
 
 export const authRouter = Router();
 
@@ -174,7 +175,7 @@ authRouter.post("/local/logout", async (req, res) => {
 // Register Route
 authRouter.post("/local/register", async (req, res) => {
   try {
-    const { password, firstname, lastname, email, phone, address, role } = req.body;
+    const { password, firstname, lastname, email, phone, address, role } = req.body as ICustomer;
 
     if (!password || !firstname || !lastname || !email || !phone || !address) {
       return res
@@ -205,8 +206,7 @@ authRouter.post("/local/register", async (req, res) => {
       throw new Error("Erreur lors de la création du client");
     }
 
-    const newCustomerClean
-      //: ICustomerClean 
+    const newCustomerClean: ICustomerCleanValue
       = {
       firstname,
       lastname,
@@ -214,7 +214,7 @@ authRouter.post("/local/register", async (req, res) => {
       phone,
       address,
       role
-    } //as ICustomerClean
+    }
 
     res.status(201).json(newCustomerClean);
   } catch (error) {
