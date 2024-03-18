@@ -5,6 +5,7 @@ PUT {{base_url}}/api/auth/email/1
 Authorization: Bearer {{$dotenv Token}}
 Content-Type: application/json
 
+
 {
   "currentMail": "john.doe@example.com",
   "mail": "john.doe@example.com",
