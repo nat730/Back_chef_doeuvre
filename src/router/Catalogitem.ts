@@ -2,10 +2,11 @@ import { Request, Response, Router } from "express";
 import { CatalogItem } from "..";
 import adminMiddleware from "../middleware/middleware_admin";
 import { Product } from "..";
+import authenticationMiddleware from "../middleware/middleware_connexion";
 
 export const catalogItemRouter = Router();
 
-catalogItemRouter.post("/", adminMiddleware, async (req: Request, res: Response) => {
+catalogItemRouter.post("/" ,authenticationMiddleware,adminMiddleware, async (req: Request, res: Response) => {
   try {
     const { price, price_asso, image, product } = req.body;
 
