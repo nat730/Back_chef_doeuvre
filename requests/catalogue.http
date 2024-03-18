@@ -1,0 +1,22 @@
+@base_url= http://localhost:3000
+
+###CATALOG
+GET {{base_url}}/api/catalog/1
+###
+GET {{base_url}}/api/catalog
+###
+POST {{base_url}}/api/catalog
+Content-Type: application/json
+Authorization: Bearer {{$dotenv Token}}
+
+{
+"store": "Paris"
+}
+###
+PUT {{base_url}}/api/catalog/1
+Content-Type: application/json
+Authorization: Bearer {{$dotenv Token}}
+
+{
+"store": "Paris"
+}

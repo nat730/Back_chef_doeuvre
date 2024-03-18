@@ -1,0 +1,17 @@
+@base_url= http://localhost:3000
+
+POST {{base_url}}/api/orderitem
+Content-Type: application/json
+
+{
+  "quantity": 10,
+  "price_by_unity": 1.5,
+  "unity_value": 1,
+  "unity_symbol": "litre",
+  "price_asso": 15,
+  "price_per_kg_asso": 15
+}
+###
+GET {{base_url}}/api/orderitem
+Content-Type: application/json
+Authorization: Bearer {{$dotenv Token}}
