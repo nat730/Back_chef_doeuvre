@@ -1,10 +1,9 @@
 @base_url= http://localhost:3000
 
 ###Customer
-
 PUT {{base_url}}/api/auth/email/1
-Content-Type: application/json
 Authorization: Bearer {{$dotenv Token}}
+Content-Type: application/json
 
 {
   "currentMail": "john.doe@example.com",
@@ -12,7 +11,6 @@ Authorization: Bearer {{$dotenv Token}}
   "mailConfirmation": "john.doe@example.com"
 }
 ###
-
 PUT {{base_url}}/api/auth/password/1
 Authorization: Bearer {{$dotenv Token}}
 Content-Type: application/json
