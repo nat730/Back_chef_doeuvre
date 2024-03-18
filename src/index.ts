@@ -20,6 +20,7 @@ import { authRouter } from "./router/Customer";
 import { productRouter } from "./router/Product";
 import { catalogRouter } from "./router/Catalog";
 import { orderRouter } from "./router/Order";
+import { orderItemRouter } from "./router/Orderitem";
 
 
 // Initialisez Sequelize avec votre configuration
@@ -72,6 +73,7 @@ apiRouter.use("/categories", categoryRouter);
 apiRouter.use("/auth", authRouter);
 apiRouter.use("/product", productRouter);
 apiRouter.use("/order", orderRouter);
+apiRouter.use("/orderitem", orderItemRouter);
 apiRouter.use("/catalog", catalogRouter);
 
 
