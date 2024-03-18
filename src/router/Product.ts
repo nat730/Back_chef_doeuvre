@@ -5,6 +5,7 @@ import adminMiddleware from "../middleware/middleware_admin";
 
 export const productRouter = Router();
 
+
 // Create a new product
 productRouter.post("/", authenticationMiddleware, adminMiddleware, async (req: Request, res: Response) => {
   try {
