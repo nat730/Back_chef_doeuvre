@@ -1,5 +1,14 @@
 import { CreationOptional, DataTypes, InferAttributes, InferCreationAttributes, Model, Sequelize } from "sequelize";
 
+export interface ICustomerCleanValue {
+  firstname: string,
+  lastname: string,
+  email: string,
+  phone: string,
+  address: string,
+  role: string,
+}
+
 export interface ICustomerClean extends Model<InferAttributes<ICustomer>, InferCreationAttributes<ICustomer>> {
   id: CreationOptional<number>,
   firstname: string,
