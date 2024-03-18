@@ -1,0 +1,32 @@
+@base_url= http://localhost:3000
+
+###CATEGORIES
+POST {{base_url}}/api/categories/
+Content-Type: application/json
+Authorization: Bearer {{$dotenv Token}}
+
+{
+  "name": "Electronics",
+  "description": "Electronic devices and gadgets"
+}
+###
+DELETE {{base_url}}/api/categories/
+Content-Type: application/json
+Authorization: Bearer {{$dotenv Token}}
+###
+DELETE {{base_url}}/api/categories/2
+Content-Type: application/json
+Authorization: Bearer {{$dotenv Token}}
+###
+GET {{base_url}}/api/categories
+###
+GET {{base_url}}/api/categories/3
+###
+PUT {{base_url}}/api/categories/1
+Content-Type: application/json
+Authorization: Bearer {{$dotenv Token}}
+
+{
+  "name": "Electronics",
+  "description": "Electronic devices and gadgets"
+  }

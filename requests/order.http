@@ -1,0 +1,22 @@
+@base_url= http://localhost:3000
+###ORDER
+POST {{base_url}}/api/order
+Content-Type: application/json
+Authorization: Bearer {{$dotenv Token}}
+
+{
+  "order_date": "2023-03-15",
+  "status": "payed",
+  "collect_schedule": "2023-03-16"
+}
+###
+PUT {{base_url}}/api/order/status/3
+Content-Type: application/json
+Authorization: Bearer {{$dotenv Token}}
+
+{
+  "status": "payed"
+}
+###
+GET {{base_url}}/api/order/product/1
+Authorization: Bearer {{$dotenv Token}}

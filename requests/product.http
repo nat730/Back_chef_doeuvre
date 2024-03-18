@@ -1,0 +1,17 @@
+@base_url= http://localhost:3000
+
+###product
+POST {{base_url}}/api/product
+Content-Type: application/json
+Authorization: Bearer {{$dotenv Token}}
+
+{
+  "name": "Nom du produit",   
+  "description": "Description du produit",
+  "unit_value":"unit",
+  "FKcategory": "Electronics"
+}
+###
+GET {{base_url}}/api/product
+###
+GET {{base_url}}/api/product/1
