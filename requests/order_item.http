@@ -12,6 +12,22 @@ Content-Type: application/json
   "price_per_kg_asso": 15
 }
 ###
-GET {{base_url}}/api/orderitem
+GET {{base_url}}/api/orderitem/1
 Content-Type: application/json
+Authorization: Bearer {{$dotenv Token}}
+###
+PUT {{base_url}}/api/orderitem/1
+Authorization: Bearer {{$dotenv Token}}
+Content-Type: application/json
+
+{
+  "quantity": 5,
+  "price_by_unity": 2,
+  "unity_value": 0.5,
+  "unity_symbol": "litre",
+  "price_asso": 10,
+  "price_per_kg_asso": 20
+}
+###
+DELETE {{base_url}}/api/orderitem/1
 Authorization: Bearer {{$dotenv Token}}
