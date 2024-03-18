@@ -60,8 +60,8 @@ Category.hasOne(Product, { foreignKey: 'category_id' });
 Catalog.belongsToMany(Product, { through: CatalogItem, foreignKey: 'catalog_id' });
 Product.belongsToMany(Catalog, { through: CatalogItem, foreignKey: 'product_id' });
 
-sequelize.sync({ force: true });
-// sequelize.sync();
+// sequelize.sync({ force: true });
+sequelize.sync();
 
 // Configuration d'Express et écoute sur le port
 const app = express();
