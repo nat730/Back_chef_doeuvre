@@ -3,6 +3,7 @@ import express from "express";
 import cors from "cors";
 import { Sequelize } from "sequelize";
 
+
 // Importez les modèles
 import { CategoryModel } from "./models/category";
 import { CustomerModel } from "./models/customer";
@@ -21,6 +22,7 @@ import { productRouter } from "./router/Product";
 import { catalogRouter } from "./router/Catalog";
 import { orderRouter } from "./router/Order";
 import { orderItemRouter } from "./router/Orderitem";
+import { productCatalogItemRouter } from "./router/Product_catalogitem";
 
 
 // Initialisez Sequelize avec votre configuration
@@ -51,14 +53,14 @@ OrderItem.belongsTo(Order, { foreignKey: "order_id" });
 Product.hasMany(OrderItem, { foreignKey: "product_id" });
 OrderItem.belongsTo(Product, { foreignKey: "product_id" });
 
-OrderItem.belongsToMany(Product, { through: "CatalogItem", foreignKey: 'catalog_id' });
-Product.belongsToMany(OrderItem, { through: "CatalogItem", foreignKey: 'product_id' });
-
 Product.belongsTo(Category, { foreignKey: 'category_id' });
 Category.hasOne(Product, { foreignKey: 'category_id' });
 
 Catalog.belongsToMany(Product, { through: CatalogItem, foreignKey: 'catalog_id' });
 Product.belongsToMany(Catalog, { through: CatalogItem, foreignKey: 'product_id' });
+
+Product.hasMany(CatalogItem, { foreignKey: 'product_id' });
+CatalogItem.belongsTo(Product, { foreignKey: 'product_id' });
 
 // sequelize.sync({ force: true });
 sequelize.sync();
@@ -75,6 +77,7 @@ apiRouter.use("/product", productRouter);
 apiRouter.use("/order", orderRouter);
 apiRouter.use("/orderitem", orderItemRouter);
 apiRouter.use("/catalog", catalogRouter);
+apiRouter.use("/productcatalogitem", productCatalogItemRouter);
 
 
 app.use("/api", apiRouter);
