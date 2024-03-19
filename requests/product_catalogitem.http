@@ -1,0 +1,18 @@
+@base_url= http://localhost:3000
+
+POST {{base_url}}/api/productcatalogitem
+Content-Type: application/json
+Authorization: Bearer {{$dotenv Token}}
+
+{
+  "name": "patate",
+  "description": "pomme de terre",
+  "unit_value": "kilogramme",
+  "FKcategory": "Electronics",
+  "price": "1.5",
+  "price_asso": "3",
+  "image": "machin.url"
+}
+###
+GET {{base_url}}/api/productcatalogitem
+Authorization: Bearer {{$dotenv Token}}
