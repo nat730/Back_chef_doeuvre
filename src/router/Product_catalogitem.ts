@@ -9,7 +9,7 @@ export const productCatalogItemRouter = Router();
 productCatalogItemRouter.post("/", authenticationMiddleware, adminMiddleware, async (req: Request, res: Response) => {
     try {
       const { name, description, unit_value, FKcategory, price, price_asso, image } = req.body;
-  
+
       // Validation des données
       if (!name || !description || !unit_value || !FKcategory) {
         console.error(req.body);
@@ -17,14 +17,14 @@ productCatalogItemRouter.post("/", authenticationMiddleware, adminMiddleware, as
           error: "Veuillez fournir toutes les informations nécessaires pour créer un produit.",
         });
       }
-  
+
       // Vérification de l'existence de la catégorie
       const categoryExists = await Category.findOne({ where: { name: FKcategory } });
-  
+
       if (!categoryExists) {
         return res.status(404).json({ error: "La catégorie spécifiée n'existe pas." });
       }
-  
+
       // Création d'un nouveau produit
       const newProduct = await Product.create({
         name,
@@ -32,14 +32,14 @@ productCatalogItemRouter.post("/", authenticationMiddleware, adminMiddleware, as
         unit_value,
         category_id: categoryExists.id
       });
-  
+
       const newCatalogItem = await CatalogItem.create({
         price,
         price_asso,
         image,
         product_id: newProduct.id
       });
-  
+
       // Réponse avec le nouveau produit créé
       res.status(201).json({ newProduct,newCatalogItem, categoryName: categoryExists.name });
     } catch (error) {
@@ -47,16 +47,11 @@ productCatalogItemRouter.post("/", authenticationMiddleware, adminMiddleware, as
       res.status(500).json({ error: "Erreur interne du serveur" });
     }
   });
-  
+
 productCatalogItemRouter.get("/", authenticationMiddleware, async (req: Request, res: Response) => {
   try {
     const products = await Product.findAll({
-      include: [
-        {
-          model: CatalogItem,
-          attributes: ["price", "price_asso", "image"],
-        },
-      ],
+      include: [CatalogItem],
     });
 
     res.status(200).json(products);
