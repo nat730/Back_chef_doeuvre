@@ -48,3 +48,15 @@ productCatalogItemRouter.post("/", authenticationMiddleware, adminMiddleware, as
     }
   });
   
+  productCatalogItemRouter.get("/", authenticationMiddleware, async (req: Request, res: Response) => {
+    try {
+      const products = await Product.findAll({
+        include: [CatalogItem],
+      });
+  
+      res.status(200).json(products);
+    } catch (error) {
+      console.error("Erreur lors de la récupération des produits :", error);
+      res.status(500).json({ error: "Erreur interne du serveur" });
+    }
+  });
