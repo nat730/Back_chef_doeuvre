@@ -226,10 +226,15 @@ authRouter.post("/local/register", async (req, res) => {
 authRouter.get("/local/user/me", authenticationMiddleware, async (req, res) => {
   const customer = await Customer.findOne({ where: { id: req.customer?.userId } });
   if (customer) {
-    const user = { firstname: customer.firstname };
+    const user = {
+      firstname: customer.firstname,
+      lastname: customer.lastname,
+      email: customer.email,
+      phone: customer.phone,
+      address: customer.address,
+    };
     res.json(user);
   } else {
     res.status(401).json({ error: "Utilisateur non authentifié" });
   }
 });
-
