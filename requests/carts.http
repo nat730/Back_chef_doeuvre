@@ -1,0 +1,14 @@
+@base_url= http://localhost:3000
+
+###
+GET {{base_url}}/api/carts
+Content-Type: application/json
+
+{
+  "items": [
+    {
+      "name": "patates",
+      "quantity": 1
+    }
+  ]
+}
