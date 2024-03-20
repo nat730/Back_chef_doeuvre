@@ -7,7 +7,7 @@ Content-Type: application/json
 {
   "items": [
     {
-      "name": "patate",
+      "name": "patates",
       "quantity": 1
     }
   ]
