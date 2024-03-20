@@ -6,7 +6,7 @@ import authenticationMiddleware from "../middleware/middleware_connexion";
 export const catalogRouter = Router();
 
 // Create - Ajouter un nouveau catalogue
-catalogRouter.post("/" ,authenticationMiddleware,adminMiddleware, async (req: Request, res: Response) => {
+catalogRouter.post("/" ,authenticationMiddleware, adminMiddleware, async (req: Request, res: Response) => {
   try {
     const { store } = req.body;
     const newCatalog = await Catalog.create({ store });
