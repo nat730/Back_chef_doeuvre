@@ -3,11 +3,12 @@ import { CreationOptional, DataTypes, InferAttributes, InferCreationAttributes, 
 interface IOrderItem extends Model<InferAttributes<IOrderItem>, InferCreationAttributes<IOrderItem>> {
   id: CreationOptional<number>,
   quantity: number,
-  price_by_unity: number,
   unity_value: number,
   unity_symbol: string,
-  price_asso: string,
-  price_per_kg_asso: string,
+  price_by_unity: number,
+  price_by_unity_asso: string,
+  price_per_kg_asso?: number,
+  price_per_kg?:number,
 }
 
 export const OrderItemModel = (sequelize: Sequelize) => {
@@ -21,7 +22,8 @@ export const OrderItemModel = (sequelize: Sequelize) => {
     price_by_unity: DataTypes.FLOAT,
     unity_value: DataTypes.FLOAT,
     unity_symbol: DataTypes.ENUM('litre', 'kilogramme', 'unit'),
-    price_asso: DataTypes.FLOAT,
+    price_by_unity_asso: DataTypes.FLOAT,
     price_per_kg_asso: DataTypes.FLOAT,
+    price_per_kg:DataTypes.FLOAT,
   });
 };
