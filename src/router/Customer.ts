@@ -121,14 +121,11 @@ authRouter.post("/local", async (req: Request, res: Response) => {
     const jwtToken = jwt.sign(
       { userId: user.id, role: user.role },
       "secret",
-      { expiresIn: "1h" },
     );
     res.status(200).json({ message: "Connexion réussie", jwtToken });
   } catch (error) {
     console.error("Erreur lors de la connexion :", error);
-    res
-      .status(500)
-      .json({ message: "Erreur interne du serveur", error: error });
+    res.status(500).json({ message: "Erreur interne du serveur", error: error });
   }
 });
 
