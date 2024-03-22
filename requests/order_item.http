@@ -6,10 +6,9 @@ Content-Type: application/json
 {
   "quantity": 10,
   "price_by_unity": 1.5,
-  "unity_value": 1,
-  "unity_symbol": "litre",
-  "price_asso": 15,
-  "price_per_kg_asso": 15
+  "price_by_unity_asso": 15,
+  "weight_unity": 0.6,
+  "unity_symbol": "litre"
 }
 ###
 GET {{base_url}}/api/orderitem/1
@@ -23,10 +22,9 @@ Content-Type: application/json
 {
   "quantity": 5,
   "price_by_unity": 2,
-  "unity_value": 0.5,
-  "unity_symbol": "litre",
-  "price_asso": 10,
-  "price_per_kg_asso": 20
+  "price_by_unity_asso": 10,
+  "weight_unity": 0.5,
+  "unity_symbol": "litre"
 }
 ###
 DELETE {{base_url}}/api/orderitem/1

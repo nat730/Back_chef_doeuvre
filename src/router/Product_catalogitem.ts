@@ -8,7 +8,7 @@ export const productCatalogItemRouter = Router();
 // Create a new product
 productCatalogItemRouter.post("/", authenticationMiddleware, adminMiddleware, async (req: Request, res: Response) => {
     try {
-      const { name, description, unit_value, FKcategory, price, price_asso, image } = req.body;
+      const { name, description, unit_value, FKcategory, price, price_by_unity_asso, image } = req.body;
   
       // Validation des données
       if (!name || !description || !unit_value || !FKcategory) {
@@ -35,7 +35,7 @@ productCatalogItemRouter.post("/", authenticationMiddleware, adminMiddleware, as
   
       const newCatalogItem = await CatalogItem.create({
         price,
-        price_asso,
+        price_by_unity_asso,
         image,
         product_id: newProduct.id
       });
