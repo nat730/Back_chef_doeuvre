@@ -13,3 +13,6 @@ Authorization: Bearer {{$dotenv token}}
     }
   ]
 }
+
+###
+GET {{base_url}}/api/carts/1
