@@ -32,3 +32,19 @@ cartRouter.get("/", async (req, res) => {
       res.status(500).json({ error: "Erreur interne du serveur" });
     }
   });
+
+  cartRouter.get('/:value', async (req, res) => {
+    const {value}: {value: string} = req.params;
+    try {
+      const products = await Product.findAll({
+        include: [{
+          model: CatalogItem,
+        }],
+        where: {name: value}
+      });
+      res.json(products);
+    } catch (error) {
+      console.error("Erreur lors de la récupération des produits du panier :", error);
+      res.status(500).json({ error: "Erreur interne du serveur" });
+    }
+  });

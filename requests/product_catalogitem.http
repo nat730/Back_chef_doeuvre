@@ -11,7 +11,7 @@ Authorization: Bearer {{$dotenv Token}}
   "FKcategory": "Electronics",
   "price": "1.5",
   "price_by_unity_asso": "3",
-  "image": "machin.url"
+  "image": "https://img-3.journaldesfemmes.fr/ZfmzxO5Kyg0e3j1URh4V8Mf3slc=/1500x/smart/097777a79f144a048f7008573f8584d5/ccmcms-jdf/27424516.jpg"
 }
 ###
 GET {{base_url}}/api/productcatalogitem
