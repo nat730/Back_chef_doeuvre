@@ -8,9 +8,9 @@ export const catalogItemRouter = Router();
 
 catalogItemRouter.post("/" ,authenticationMiddleware,adminMiddleware, async (req: Request, res: Response) => {
   try {
-    const { price, price_by_unity_asso, image, product } = req.body;
+    const { price_by_unity, price_by_unity_asso, image, product } = req.body;
 
-    if (!price || !price_by_unity_asso || !image || !product) {
+    if (!price_by_unity || !price_by_unity_asso || !image || !product) {
       return res
         .status(400)
         .json({
@@ -25,7 +25,7 @@ catalogItemRouter.post("/" ,authenticationMiddleware,adminMiddleware, async (req
       }
 
     const newCatalogItem = await CatalogItem.create({
-      price: parseFloat(price),
+      price_by_unity: parseFloat(price_by_unity),
       price_by_unity_asso: parseFloat(price_by_unity_asso),
       image,
       product_id: productItem.id,
