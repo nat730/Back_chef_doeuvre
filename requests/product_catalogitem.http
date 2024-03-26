@@ -9,7 +9,7 @@ Authorization: Bearer {{$dotenv Token}}
   "description": "pomme de terre",
   "unit_value": "kilogramme",
   "FKcategory": "Electronics",
-  "price": "1.5",
+  "price_by_unity": "1.5",
   "price_by_unity_asso": "3",
   "image": "machin.url"
 }

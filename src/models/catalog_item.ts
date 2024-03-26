@@ -2,7 +2,7 @@ import { Sequelize, DataTypes, CreationOptional, InferAttributes, InferCreationA
 
 interface ICatalogitem extends Model<InferAttributes<ICatalogitem>, InferCreationAttributes<ICatalogitem>> {
   id: CreationOptional<number>,
-  price: number,
+  price_by_unity: number,
   price_by_unity_asso: number,
   image: string,
   product_id: number
@@ -15,7 +15,7 @@ export const CatalogItemModel = (sequelize: Sequelize) => {
       type: DataTypes.INTEGER.UNSIGNED,
       autoIncrement: true
     },
-    price: DataTypes.FLOAT,
+    price_by_unity: DataTypes.FLOAT,
     price_by_unity_asso: DataTypes.FLOAT,
     image: DataTypes.STRING,
     product_id: DataTypes.INTEGER
