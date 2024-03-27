@@ -48,7 +48,7 @@ productCatalogItemRouter.post("/", authenticationMiddleware, adminMiddleware, as
     }
   });
   
-  productCatalogItemRouter.get("/", authenticationMiddleware, async (req: Request, res: Response) => {
+  productCatalogItemRouter.get("/", async (req: Request, res: Response) => {
     try {
       const products = await Product.findAll({
         include: [CatalogItem],
