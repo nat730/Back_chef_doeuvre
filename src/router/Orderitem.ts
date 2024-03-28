@@ -5,10 +5,8 @@ import authenticationMiddleware from "../middleware/middleware_connexion";
 export const orderItemRouter = Router();
 
 orderItemRouter.post("/", async (req: Request, res: Response) => {
-  console.log("patate");
-
   try {
-    const { quantity, price_by_unity, weight_unity, unity_symbol, price_by_unity_asso } = req.body;
+    const { quantity, price_by_unity, weight_unity, unity_symbol, price_by_unity_asso,order_id,product_id } = req.body;
 
     let price_per_kg = undefined;
     let price_per_kg_asso = undefined;
@@ -30,7 +28,9 @@ orderItemRouter.post("/", async (req: Request, res: Response) => {
       weight_unity,
       unity_symbol,
       price_per_kg,
-      price_per_kg_asso
+      price_per_kg_asso,
+      order_id,
+      product_id
     });
 
     res.status(201).json(newOrderItem);
@@ -43,6 +43,8 @@ orderItemRouter.post("/", async (req: Request, res: Response) => {
 orderItemRouter.get("/:id", authenticationMiddleware, async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
+    console.log(id,'patate');
+    
 
     const orderItem = await OrderItem.findByPk(id);
 

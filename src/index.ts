@@ -23,6 +23,7 @@ import { catalogRouter } from "./router/Catalog";
 import { orderRouter } from "./router/Order";
 import { orderItemRouter } from "./router/Orderitem";
 import { productCatalogItemRouter } from "./router/Product_catalogitem";
+import { invoiceRouter } from "./router/invoice";
 
 
 // Initialisez Sequelize avec votre configuration
@@ -78,6 +79,8 @@ apiRouter.use("/order", orderRouter);
 apiRouter.use("/orderitem", orderItemRouter);
 apiRouter.use("/catalog", catalogRouter);
 apiRouter.use("/productcatalogitem", productCatalogItemRouter);
+apiRouter.use("/invoice", invoiceRouter);
+
 
 
 app.use("/api", apiRouter);

@@ -8,8 +8,11 @@ Content-Type: application/json
   "price_by_unity": 1.5,
   "price_by_unity_asso": 15,
   "weight_unity": 0.6,
-  "unity_symbol": "litre"
-}
+  "unity_symbol": "litre",
+  "order_id":1,
+  "order_item":1,
+  "product_id":1
+  }
 ###
 GET {{base_url}}/api/orderitem/1
 Content-Type: application/json

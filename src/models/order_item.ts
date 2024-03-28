@@ -6,9 +6,11 @@ interface IOrderItem extends Model<InferAttributes<IOrderItem>, InferCreationAtt
   weight_unity: number,
   unity_symbol: string,
   price_by_unity: number,
+  price_per_kg?:number,
   price_by_unity_asso: string,
   price_per_kg_asso?: number,
-  price_per_kg?:number,
+  order_id?: number,
+  product_id?:number
 }
 
 export const OrderItemModel = (sequelize: Sequelize) => {
