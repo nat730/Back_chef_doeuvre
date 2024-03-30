@@ -8,10 +8,10 @@ Authorization: Bearer {{$dotenv Token}}
   "name": "patate",
   "description": "pomme de terre",
   "unit_value": "kilogramme",
-  "FKcategory": "Electronics",
+  "FKcategory": "Alimentaire",
   "price_by_unity": "1.5",
   "price_by_unity_asso": "3",
-  "image": "machin.url"
+  "image": "https://i0.wp.com/www.programme-malin.com/wp-content/uploads/2020/02/pommes-de-terre.jpg?fit=1920%2C1080&ssl=1"
 }
 ###
 GET {{base_url}}/api/productcatalogitem
