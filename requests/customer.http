@@ -59,4 +59,4 @@ Content-Type: application/json
 }
 ###
 GET {{base_url}}/api/auth/local/user/me
-Authorization: Bearer {{$dotenv Token}}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcxMTUzMzkwMH0.71NyGGGncarz65lXVYf9KEml0v3UVFqBYJXIm7-nDEg

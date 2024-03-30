@@ -18,6 +18,6 @@ export const ProductModel = (sequelize: Sequelize) => {
     name: DataTypes.STRING,
     description: DataTypes.STRING,
     category_id: DataTypes.INTEGER,
-    unit_value: DataTypes.ENUM('litre', 'kilogramme', 'unit')
+    unit_value: DataTypes.ENUM('l', 'kg', 'unité')
   });
 };
