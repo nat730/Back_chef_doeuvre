@@ -6,8 +6,8 @@ Content-Type: application/json
 Authorization: Bearer {{$dotenv Token}}
 
 {
-  "name": "Electronics",
-  "description": "Electronic devices and gadgets"
+  "name": "Alimentaire",
+  "description": "Alimentaire"
 }
 ###
 DELETE {{base_url}}/api/categories/

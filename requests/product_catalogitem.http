@@ -7,7 +7,7 @@ Authorization: Bearer {{$dotenv Token}}
 {
   "name": "patate",
   "description": "pomme de terre",
-  "unit_value": "kilogramme",
+  "unit_value": "kg",
   "FKcategory": "Alimentaire",
   "price_by_unity": "1.5",
   "price_by_unity_asso": "3",
