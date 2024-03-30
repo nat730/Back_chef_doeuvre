@@ -9,8 +9,8 @@ Authorization: Bearer {{$dotenv Token}}
   "description": "pomme de terre",
   "unit_value": "kg",
   "FKcategory": "Alimentaire",
-  "price_by_unity": "1.5",
-  "price_by_unity_asso": "3",
+  "price_by_unity": "3",
+  "price_by_unity_asso": "1.5",
   "image": "https://i0.wp.com/www.programme-malin.com/wp-content/uploads/2020/02/pommes-de-terre.jpg?fit=1920%2C1080&ssl=1"
 }
 ###
