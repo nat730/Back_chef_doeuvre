@@ -1,6 +1,7 @@
 import { Request, Response, Router } from "express";
 import { OrderItem } from "..";
 import authenticationMiddleware from "../middleware/middleware_connexion";
+import { UnitySymbol } from "../models/order_item";
 
 export const orderItemRouter = Router();
 
@@ -14,7 +15,7 @@ orderItemRouter.post("/", async (req: Request, res: Response) => {
     let price_per_kg_asso = undefined;
 
     if (weight_unity !== 0) {
-      if (unity_symbol === "kg" || unity_symbol === "l") {
+      if (unity_symbol === UnitySymbol.KG || unity_symbol === UnitySymbol.L) {
         price_per_kg = price_by_unity / weight_unity;
         price_per_kg_asso = price_by_unity_asso / weight_unity;
       }
@@ -64,7 +65,7 @@ orderItemRouter.put("/:id", authenticationMiddleware, async (req: Request, res: 
     const { id } = req.params;
     const { quantity, price_by_unity, weight_unity, unity_symbol, price_by_unity_asso } = req.body;
     if (weight_unity !== 0) {
-      if (unity_symbol === "kg" || unity_symbol === "l") {
+      if (unity_symbol === UnitySymbol.KG || unity_symbol === UnitySymbol.L) {
         price_per_kg = price_by_unity / weight_unity;
         price_per_kg_asso = price_by_unity_asso / weight_unity;
       }
