@@ -1,5 +1,11 @@
 import { CreationOptional, DataTypes, InferAttributes, InferCreationAttributes, Model, Sequelize } from "sequelize";
 
+export enum UnitySymbol {
+  L = 'l',
+  KG = 'kg',
+  UNIT = 'unité'
+}
+
 interface IOrderItem extends Model<InferAttributes<IOrderItem>, InferCreationAttributes<IOrderItem>> {
   id: CreationOptional<number>,
   quantity: number,
