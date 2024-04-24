@@ -67,7 +67,7 @@ authRouter.put("/password/:id", authenticationMiddleware, async (req: Request, r
       return res.status(401).json({ error: "Mot de passe actuel incorrect." });
     }
 
-    const hashedNewPassword = await bcrypt.hash(password, parseInt(process.env.saltRounds!));
+    const hashedNewPassword = await bcrypt.hash(password, process.env.saltRounds!);
     await user.update({ password: hashedNewPassword });
 
     res.json({ message: "Mot de passe modifié avec succès." });
@@ -188,7 +188,7 @@ authRouter.post("/local/register", async (req, res) => {
       return res.status(409).json({ error: "Cet utilisateur existe déjà" });
     }
 
-    const hashedPassword = await bcrypt.hash(password, parseInt(process.env.saltRounds!));
+    const hashedPassword = await bcrypt.hash(password, process.env.saltRounds!);
     const newCustomer = await Customer.create({
       password: hashedPassword,
       firstname,
