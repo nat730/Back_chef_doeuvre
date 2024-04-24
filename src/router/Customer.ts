@@ -4,7 +4,9 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { ICustomer, ICustomerCleanValue } from "../models/customer";
 import authenticationMiddleware from "../middleware/middleware_connexion";
+import 'dotenv/config';
 
+console.log(process.env.JWT_SECRET);
 export const authRouter = Router();
 
 // Update Email Route
@@ -120,7 +122,7 @@ authRouter.post("/local", async (req: Request, res: Response) => {
     }
     const jwtToken = jwt.sign(
       { userId: user.id, role: user.role },
-      process.env.jwtSecret!,
+      process.env.JWT_SECRET!,
     );
     res.status(200).json({ message: "Connexion réussie", jwtToken });
   } catch (error) {

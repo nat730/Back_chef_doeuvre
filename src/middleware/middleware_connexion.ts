@@ -21,7 +21,7 @@ const authenticationMiddleware = async (
   }
 
   try {
-    const decoded = jwt.verify(token, process.env.jwtSecret!) as {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET!) as {
       role: string; userId: number
     };
     console.log(decoded);

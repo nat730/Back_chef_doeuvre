@@ -30,3 +30,53 @@ Authorization: Bearer {{$dotenv Token}}
   "name": "Electronics",
   "description": "Electronic devices and gadgets"
   }
+
+###
+POST {{base_url}}/api/categories/
+Content-Type: application/json
+Authorization: Bearer {{$dotenv Token}}
+
+{
+  "name": "Hygiène",
+  "description": "Produits d'hygiène"
+}
+
+###
+POST {{base_url}}/api/categories/
+Content-Type: application/json
+Authorization: Bearer {{$dotenv Token}}
+
+{
+  "name": "Nourrissons",
+  "description": "Produits pour nourrissons"
+}
+
+###
+POST {{base_url}}/api/categories/
+Content-Type: application/json
+Authorization: Bearer {{$dotenv Token}}
+
+{
+  "name": "Entretien",
+  "description": "Produits d'Entretien"
+}
+
+###
+POST {{base_url}}/api/categories/
+Content-Type: application/json
+Authorization: Bearer {{$dotenv Token}}
+
+{
+  "name": "Boissons",
+  "description": "Boissons"
+}
+
+###
+POST {{base_url}}/api/categories/
+Content-Type: application/json
+Authorization: Bearer {{$dotenv Token}}
+
+{
+  "name": "Snacks",
+  "description": "Snacks"
+}
