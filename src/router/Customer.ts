@@ -6,7 +6,6 @@ import { ICustomer, ICustomerCleanValue } from "../models/customer";
 import authenticationMiddleware from "../middleware/middleware_connexion";
 import 'dotenv/config';
 
-console.log(process.env.JWT_SECRET);
 export const authRouter = Router();
 
 // Update Email Route
