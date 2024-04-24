@@ -1,14 +1,14 @@
 import { Request, Response, Router } from "express";
-import authenticationMiddleware from "../middleware/middleware_connexion";
 import { Customer, BlackList } from "..";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { ICustomer, ICustomerCleanValue } from "../models/customer";
+import authenticationMiddleware from "../middleware/middleware_connexion";
 
 export const authRouter = Router();
 
 // Update Email Route
-authRouter.put("/email/:id", authenticationMiddleware, async (req: Request, res: Response) => {
+authRouter.put("/email/:id", authenticationMiddleware, async(req: Request, res: Response) => {
   try {
     const userId = req.params.id;
     const { currentMail, mail, mailConfirmation } = req.body;
@@ -67,7 +67,7 @@ authRouter.put("/password/:id", authenticationMiddleware, async (req: Request, r
       return res.status(401).json({ error: "Mot de passe actuel incorrect." });
     }
 
-    const hashedNewPassword = await bcrypt.hash(password, 10);
+    const hashedNewPassword = await bcrypt.hash(password, parseInt(process.env.saltRounds!));
     await user.update({ password: hashedNewPassword });
 
     res.json({ message: "Mot de passe modifié avec succès." });
@@ -120,7 +120,7 @@ authRouter.post("/local", async (req: Request, res: Response) => {
     }
     const jwtToken = jwt.sign(
       { userId: user.id, role: user.role },
-      "secret",
+      process.env.jwtSecret!,
     );
     res.status(200).json({ message: "Connexion réussie", jwtToken });
   } catch (error) {
@@ -188,7 +188,7 @@ authRouter.post("/local/register", async (req, res) => {
       return res.status(409).json({ error: "Cet utilisateur existe déjà" });
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await bcrypt.hash(password, parseInt(process.env.saltRounds!));
     const newCustomer = await Customer.create({
       password: hashedPassword,
       firstname,
