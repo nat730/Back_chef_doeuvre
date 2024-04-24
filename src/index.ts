@@ -54,7 +54,7 @@ Product.hasMany(OrderItem, { foreignKey: "product_id" });
 OrderItem.belongsTo(Product, { foreignKey: "product_id" });
 
 Product.belongsTo(Category, { foreignKey: 'category_id' });
-Category.hasOne(Product, { foreignKey: 'category_id' });
+Category.hasMany(Product, { foreignKey: 'category_id' });
 
 Catalog.belongsToMany(Product, { through: CatalogItem, foreignKey: 'catalog_id' });
 Product.belongsToMany(Catalog, { through: CatalogItem, foreignKey: 'product_id' });
