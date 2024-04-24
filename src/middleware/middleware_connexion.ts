@@ -2,6 +2,7 @@ import jwt from "jsonwebtoken";
 import { BlackList } from "../index";
 import { NextFunction, Request, Response } from "express";
 
+
 const authenticationMiddleware = async (
   req: Request,
   res: Response,
@@ -20,7 +21,7 @@ const authenticationMiddleware = async (
   }
 
   try {
-    const decoded = jwt.verify(token, "secret") as {
+    const decoded = jwt.verify(token, process.env.jwtSecret!) as {
       role: string; userId: number
     };
     console.log(decoded);

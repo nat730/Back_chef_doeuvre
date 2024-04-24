@@ -16,3 +16,4 @@ Authorization: Bearer {{$dotenv Token}}
 ###
 GET {{base_url}}/api/productcatalogitem
 Authorization: Bearer {{$dotenv Token}}
+
