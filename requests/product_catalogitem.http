@@ -1,5 +1,11 @@
 @base_url= http://localhost:3000
 
+###
+GET {{base_url}}/api/productcatalogitem
+Authorization: Bearer {{$dotenv Token}}
+
+// Alimentaire
+###
 POST {{base_url}}/api/productcatalogitem
 Content-Type: application/json
 Authorization: Bearer {{$dotenv Token}}
@@ -13,7 +19,474 @@ Authorization: Bearer {{$dotenv Token}}
   "price_by_unity_asso": "1.5",
   "image": "https://i0.wp.com/www.programme-malin.com/wp-content/uploads/2020/02/pommes-de-terre.jpg?fit=1920%2C1080&ssl=1"
 }
+
 ###
-GET {{base_url}}/api/productcatalogitem
+POST {{base_url}}/api/productcatalogitem
+Content-Type: application/json
 Authorization: Bearer {{$dotenv Token}}
 
+{
+  "name": "Riz",
+  "description": "Riz blanc",
+  "unit_value": "kg",
+  "FKcategory": "Alimentaire",
+  "price_by_unity": "2",
+  "price_by_unity_asso": "1",
+  "image": "https://grocery.villas-apartments.rentals/wp-content/uploads/2019/11/Riz-long-basmati-U-paquet-aluminis%C3%A9-de-500g.png"
+}
+
+###
+POST {{base_url}}/api/productcatalogitem
+Content-Type: application/json
+Authorization: Bearer {{$dotenv Token}}
+
+{
+  "name": "Pain de mie",
+  "description": "Pain de mie tranché",
+  "unit_value": "kg",
+  "FKcategory": "Alimentaire",
+  "price_by_unity": "1.5",
+  "price_by_unity_asso": "0.8",
+  "image": "https://courses.monoprix.fr/images-v3/0c44253f-c4a3-4340-9d37-d41e42b9d14a/747589a9-0e7c-48be-9397-06f4d3d01005/500x500.jpg"
+}
+
+###
+POST {{base_url}}/api/productcatalogitem
+Content-Type: application/json
+Authorization: Bearer {{$dotenv Token}}
+
+{
+  "name": "Pâtes alimentaires (spaghetti)",
+  "description": "Spaghetti de blé dur",
+  "unit_value": "kg",
+  "FKcategory": "Alimentaire",
+  "price_by_unity": "1",
+  "price_by_unity_asso": "0.5",
+  "image": "https://grocery.villas-apartments.rentals/wp-content/uploads/2019/09/3256221111774_A_1177451_S01.png"
+}
+
+###
+POST {{base_url}}/api/productcatalogitem
+Content-Type: application/json
+Authorization: Bearer {{$dotenv Token}}
+
+{
+  "name": "Boîte de conserve de haricots verts",
+  "description": "Haricots verts en conserve",
+  "unit_value": "unité",
+  "FKcategory": "Alimentaire",
+  "price_by_unity": "1.8",
+  "price_by_unity_asso": "0.9",
+  "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRezsugeLxyNhmP-G4KSQigxVTgGP2yAdT0k_repfNS1A&s"
+}
+
+###
+POST {{base_url}}/api/productcatalogitem
+Content-Type: application/json
+Authorization: Bearer {{$dotenv Token}}
+
+{
+  "name": "Boîte de conserve de thon",
+  "description": "Thon en conserve à l'huile",
+  "unit_value": "unité",
+  "FKcategory": "Alimentaire",
+  "price_by_unity": "2.2",
+  "price_by_unity_asso": "1.1",
+  "image": "https://www.cdiscount.com/pdt2/3/0/2/1/700x700/lim5627439687302/rw/conserve-et-bocau-navire-thon-naturel.jpg"
+}
+
+###
+POST {{base_url}}/api/productcatalogitem
+Content-Type: application/json
+Authorization: Bearer {{$dotenv Token}}
+
+{
+  "name": "Gel douche",
+  "description": "Savon parfumé pour la toilette quotidienne",
+  "unit_value": "unité",
+  "FKcategory": "Hygiène",
+  "price_by_unity": "1.2",
+  "price_by_unity_asso": "0.6",
+  "image": "https://media.carrefour.fr/medias/dc2d00aee29a35d58e4f119bbeb7e1cf/p_540x540/03600551054490-a1n1-s01.jpg"
+}
+
+###
+POST {{base_url}}/api/productcatalogitem
+Content-Type: application/json
+Authorization: Bearer {{$dotenv Token}}
+
+{
+  "name": "Shampooing",
+  "description": "Shampooing doux",
+  "unit_value": "unité",
+  "FKcategory": "Hygiène",
+  "price_by_unity": "3",
+  "price_by_unity_asso": "1.5",
+  "image": "https://assets.atida.com/transform/8e029309-b5a9-4297-aeb3-dd28934ee30e/Garnier-Ultra-Doux-Shampoing-Nutrition-Intense-Avocat-Karite-400ml?io=transform:extend,width:600,height:600&format=webp"
+}
+
+###
+POST {{base_url}}/api/productcatalogitem
+Content-Type: application/json
+Authorization: Bearer {{$dotenv Token}}
+
+{
+  "name": "Dentifrice",
+  "description": "Dentifrice pour une bonne hygiène dentaire",
+  "unit_value": "unité",
+  "FKcategory": "Hygiène",
+  "price_by_unity": "2",
+  "price_by_unity_asso": "1",
+  "image": "https://parapharmatop.fr/60732-large_default/elmex-dentifrice-anti-caries-100ml.jpg"
+}
+
+###
+POST {{base_url}}/api/productcatalogitem
+Content-Type: application/json
+Authorization: Bearer {{$dotenv Token}}
+
+{
+  "name": "Brosse à dents",
+  "description": "Brosse à dents souple pour un brossage efficace",
+  "unit_value": "unité",
+  "FKcategory": "Hygiène",
+  "price_by_unity": "1.5",
+  "price_by_unity_asso": "0.8",
+  "image": "https://media.carrefour.fr/medias/b8d43c9c262c3e5f8eadcef21da5e4fc/p_540x540/3560071078393-0.jpg"
+}
+
+###
+POST {{base_url}}/api/productcatalogitem
+Content-Type: application/json
+Authorization: Bearer {{$dotenv Token}}
+
+{
+  "name": "Déodorant roll-on",
+  "description": "Déodorant roll-on à la fraîcheur longue durée",
+  "unit_value": "unité",
+  "FKcategory": "Hygiène",
+  "price_by_unity": "2.5",
+  "price_by_unity_asso": "1.2",
+  "image": "https://static.beautytocare.com/cdn-cgi/image/width=1600,height=1600,f=auto/media/catalog/product//n/i/nivea-protect-care-48h-anti-perspirant-deodorant-roll-on-50ml_1.jpg"
+} 
+
+###
+POST {{base_url}}/api/productcatalogitem
+Content-Type: application/json
+Authorization: Bearer {{$dotenv Token}}
+
+{
+  "name": "Serviettes périodiques",
+  "description": "Serviettes périodiques absorbantes",
+  "unit_value": "unité",
+  "FKcategory": "Hygiène",
+  "price_by_unity": "2.2",
+  "price_by_unity_asso": "1.1",
+  "image": "https://fridg-front.s3.amazonaws.com/media/CACHE/images/products/serviettes-ultra-nuit-always-x-10/4cea67a7146a079a966083812d6fc459.jpg"
+}
+
+
+// Entretien
+###
+POST {{base_url}}/api/productcatalogitem
+Content-Type: application/json
+Authorization: Bearer {{$dotenv Token}}
+
+{
+  "name": "Lessive liquide",
+  "description": "Lessive liquide pour un lavage efficace des vêtements",
+  "unit_value": "unité",
+  "FKcategory": "Entretien",
+  "price_by_unity": "4",
+  "price_by_unity_asso": "2",
+  "image": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcSU-or1UrV-KVngfcAE8_RREnbe6vcUWhaTH8xzVNo3jcxVnYlCnzt9m8duR49zXN0c_Yx6BgNcvVHLFDnM_dTrkai5fOl4oJpUAF0R1HBDJQCbhj7ML5nnPA"
+}
+
+###
+POST {{base_url}}/api/productcatalogitem
+Content-Type: application/json
+Authorization: Bearer {{$dotenv Token}}
+
+{
+  "name": "Assouplissant",
+  "description": "Assouplissant pour rendre les vêtements doux et agréables au toucher",
+  "unit_value": "unité",
+  "FKcategory": "Entretien",
+  "price_by_unity": "3.5",
+  "price_by_unity_asso": "1.8",
+  "image": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcSGQm-3CwROF3vzcsIMNKrWyN6BPBk3pPrU1p-NCuj978nxuSFPN3hDCgThRLp4fXrvM1WGjPaPLkRALdv09gaBLVQ5lLTxij706BVasHoIJJnx1tckoYxf5gsq"
+}
+
+###
+POST {{base_url}}/api/productcatalogitem
+Content-Type: application/json
+Authorization: Bearer {{$dotenv Token}}
+
+{
+  "name": "Nettoyant multi-surfaces",
+  "description": "Nettoyant polyvalent pour nettoyer toutes les surfaces de la maison",
+  "unit_value": "unité",
+  "FKcategory": "Entretien",
+  "price_by_unity": "3.5",
+  "price_by_unity_asso": "1.8",
+  "image": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQJIVNzjssOY1vY1ptwJISECs5rivsxshZxMPbK1vCqGHAITGXeiIOUL52-zobDtYwkD9c5Hggb4aBwLah2l8jTDSObknnKHfqD6plzDRLG2ScUNoH0SgohND0"
+}
+
+###
+POST {{base_url}}/api/productcatalogitem
+Content-Type: application/json
+Authorization: Bearer {{$dotenv Token}}
+
+{
+  "name": "Spray désinfectant pour les surfaces",
+  "description": "Spray désinfectant pour éliminer les germes et les bactéries sur les surfaces",
+  "unit_value": "unité",
+  "FKcategory": "Entretien",
+  "price_by_unity": "2.2",
+  "price_by_unity_asso": "1.1",
+  "image": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQPh7lfeyTAS3CeOADSFtFSkrVAWE0Wpl8w67AW7tgqAA_3RkGjKbhlv9ka4CYy5hg1rQjtMDFwYwBU529X1SrC9OiuSN1A9pLh_KTarMUpOtpWnxzIYixD1Tp2"
+}
+
+###
+POST {{base_url}}/api/productcatalogitem
+Content-Type: application/json
+Authorization: Bearer {{$dotenv Token}}
+
+{
+  "name": "Nettoyant pour vitres et surfaces en verre",
+  "description": "Nettoyant spécial pour obtenir des vitres et des surfaces en verre éclatantes",
+  "unit_value": "unité",
+  "FKcategory": "Entretien",
+  "price_by_unity": "3",
+  "price_by_unity_asso": "1.5",
+  "image": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcSTuyVfKcji6fxD7l4Or9RKj-gwUKO2K6pqiAvkJFRz4OtCUv4F92RR5vBY2HtwQtTUznWHQ4zFXh-8f8BIjKs5SfuGa_Imian-rVFzPbBhVw2C5gGlSP3whj4"
+}
+
+// Nourrissons
+
+###
+POST {{base_url}}/api/productcatalogitem
+Content-Type: application/json
+Authorization: Bearer {{$dotenv Token}}
+
+{
+  "name": "Lait maternisé en poudre",
+  "description": "Formule spéciale pour les bébés nourris au biberon",
+  "unit_value": "unité",
+  "FKcategory": "Nourrissons",
+  "price_by_unity": "15",
+  "price_by_unity_asso": "12",
+  "image": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRCSJ8cKzKp3oPS96kDtFnZJywQB5l02I6XTQvcO2R5_NxDD61IN8x0xsLakHqAWxHnlLzm64sd4ZfQKo1vZ6zSlVmZhr4R9uk1icUnz5OwOpHvRotbUgw6OIo"
+}
+
+###
+POST {{base_url}}/api/productcatalogitem
+Content-Type: application/json
+Authorization: Bearer {{$dotenv Token}}
+
+{
+  "name": "Purée de légumes pour bébé",
+  "description": "Purée de légumes naturelle sans sel ajouté",
+  "unit_value": "unité",
+  "FKcategory": "Nourrissons",
+  "price_by_unity": "2",
+  "price_by_unity_asso": "1.5",
+  "image": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcTHYepEgEu7PxNWmsKynUuc6WQqbefejrVp_OIfFrJNQJpt6b8fdBvjG-o_Ycb8WPj2VwkRwtNa4Sc3PKq2P3JgDm06uR-5ghdEM7d2s_FX6jFtkJT__ML0"
+}
+
+###
+POST {{base_url}}/api/productcatalogitem
+Content-Type: application/json
+Authorization: Bearer {{$dotenv Token}}
+
+{
+  "name": "Compotes de fruits pour bébé",
+  "description": "Compotes de fruits naturelles adaptées aux bébés",
+  "unit_value": "unité",
+  "FKcategory": "Nourrissons",
+  "price_by_unity": "1.5",
+  "price_by_unity_asso": "1",
+  "image": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcTzPe9rT-4Nt0MhxDIJitxwklFAsFy3OThCDzNWu1eTg_-2TxQScLJBIVZd7fJZ5G0md5TSZSO4yMoHjEj1CrnUmNX5lUOtBhv-ZsynaDQM3Qh1TAv04wzXuw"
+}
+
+###
+POST {{base_url}}/api/productcatalogitem
+Content-Type: application/json
+Authorization: Bearer {{$dotenv Token}}
+
+{
+  "name": "Biberon",
+  "description": "Biberon sûr et pratique pour nourrir les bébés sans BPA (capacité 250 ml)",
+  "unit_value": "unité",
+  "FKcategory": "Nourrissons",
+  "price_by_unity": "4",
+  "price_by_unity_asso": "3.5",
+  "image": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcS13gGooZCOjYPLlh6x6nHLg26-6CAtEy23lW72PKcIB2MPkZTL9GuMo_Qftsjnsv-xm7vuuEuBWM3Flhhz0XxCmRQJAsafD9R1gzIWHfMj9njJgj5Q8COf3w"
+}
+
+###
+POST {{base_url}}/api/productcatalogitem
+Content-Type: application/json
+Authorization: Bearer {{$dotenv Token}}
+
+{
+  "name": "Couches jetables pour nouveau-nés (taille 1)",
+  "description": "Couches douces et absorbantes pour les nourrissons",
+  "unit_value": "unité",
+  "FKcategory": "Nourrissons",
+  "price_by_unity": "8",
+  "price_by_unity_asso": "7",
+  "image": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRf0yDoeDPEaTs_qvPP7IpvtI3Y6I11ieqcEppG25Mq9WlBvlapDLZZ81jjeMFuYpOOSL22PHPLLQhsjPWjn_f1Qa_wWY51qSzwZv8n2ZpPsmbMwwj8ESQkfA"
+}
+
+// Boissons
+###
+POST {{base_url}}/api/productcatalogitem
+Content-Type: application/json
+Authorization: Bearer {{$dotenv Token}}
+
+{
+  "name": "Jus d'orange",
+  "description": "Jus d'orange naturel",
+  "unit_value": "l",
+  "FKcategory": "Boissons",
+  "price_by_unity": "2",
+  "price_by_unity_asso": "1",
+  "image": "https://www.epidrive.fr/29-large_fashion_default/tropicana-pure-jus-d-orange.jpg"
+}
+
+###
+POST {{base_url}}/api/productcatalogitem
+Content-Type: application/json
+Authorization: Bearer {{$dotenv Token}}
+
+{
+  "name": "Jus de pomme",
+  "description": "Jus de pomme pressé à froid",
+  "unit_value": "l",
+  "FKcategory": "Boissons",
+  "price_by_unity": "2.5",
+  "price_by_unity_asso": "1.2",
+  "image": "https://media.carrefour.fr/medias/f0442daf9b513c1ba043b17bb8c6263d/p_540x540/3560070828708-photosite-20201202-174713-0.jpg"
+}
+
+###
+POST {{base_url}}/api/productcatalogitem
+Content-Type: application/json
+Authorization: Bearer {{$dotenv Token}}
+
+{
+  "name": "Jus de raisin",
+  "description": "Jus de raisin frais et naturel",
+  "unit_value": "l",
+  "FKcategory": "Boissons",
+  "price_by_unity": "2.2",
+  "price_by_unity_asso": "1",
+  "image": "https://media.auchan.fr/A0220021223000508522PRIMARY_1200x1200/B2CD/"
+}
+
+###
+POST {{base_url}}/api/productcatalogitem
+Content-Type: application/json
+Authorization: Bearer {{$dotenv Token}}
+
+{
+  "name": "Jus de mangue",
+  "description": "Jus de mangue exotique et sucré",
+  "unit_value": "l",
+  "FKcategory": "Boissons",
+  "price_by_unity": "3",
+  "price_by_unity_asso": "1.5",
+  "image": "https://media.carrefour.fr/medias/74b8a7c8d82d3878bbfbda2e8ec2e736/p_540x540/3560070309320-photosite-2022215-191640-1.jpg"
+}
+
+###
+POST {{base_url}}/api/productcatalogitem
+Content-Type: application/json
+Authorization: Bearer {{$dotenv Token}}
+
+{
+  "name": "Limonade",
+  "description": "Limonade fraîche",
+  "unit_value": "l",
+  "FKcategory": "Boissons",
+  "price_by_unity": "1.5",
+  "price_by_unity_asso": "0.8",
+  "image": "https://media.auchan.fr/A0219970711000059974PRIMARY_2048x2048/B2CD/"
+}
+
+###
+POST {{base_url}}/api/productcatalogitem
+Content-Type: application/json
+Authorization: Bearer {{$dotenv Token}}
+
+{
+  "name": "Thé glacé",
+  "description": "Thé glacé rafraîchissant",
+  "unit_value": "l",
+  "FKcategory": "Boissons",
+  "price_by_unity": "2.5",
+  "price_by_unity_asso": "1.2",
+  "image": "https://www.bieres64-40.fr/wp-content/uploads/2022/12/icetea15.png"
+}
+
+// Snacks
+###
+POST {{base_url}}/api/productcatalogitem
+Content-Type: application/json
+Authorization: Bearer {{$dotenv Token}}
+
+{
+  "name": "Cookies aux pépites de chocolat",
+  "description": "Cookies moelleux aux généreuses pépites de chocolat",
+  "unit_value": "unité",
+  "FKcategory": "Snacks",
+  "price_by_unity": "2.5",
+  "price_by_unity_asso": "2",
+  "image": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcSBS-Fqez9C6y5Svek2GHJVsoruLiAidBwI19EMUda3b-5yZib-EZSSFCGoEje9lp3zZlZrf0Jv9740wL8S89k1hVCk7nHv7s52keIBjwi4HA5enypq3xA2Cw"
+}
+
+###
+POST {{base_url}}/api/productcatalogitem
+Content-Type: application/json
+Authorization: Bearer {{$dotenv Token}}
+
+{
+  "name": "Barres de céréales au chocolat",
+  "description": "Barres de céréales croustillantes au chocolat, parfaites pour une petite pause énergisante",
+  "unit_value": "unité",
+  "FKcategory": "Snacks",
+  "price_by_unity": "1.8",
+  "price_by_unity_asso": "1.5",
+  "image": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTKEriKU6_0E7bex_5daf1gekEVbrDgFPFoV8oNQmjXEz-nhczrMtWbHAiTW2_c6RXdbdLdn7uuFYeDWJ-5wn11DCtkWi2WCkwl7px9PZCgKGjkbPlg6ZPv5g"
+}
+
+###
+POST {{base_url}}/api/productcatalogitem
+Content-Type: application/json
+Authorization: Bearer {{$dotenv Token}}
+
+{
+  "name": "Chips",
+  "description": "Chips croustillantes de pommes de terre, parfaites pour grignoter",
+  "unit_value": "unité",
+  "FKcategory": "Snacks",
+  "price_by_unity": "1",
+  "price_by_unity_asso": "0.5",
+  "image": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcR3czd_UYbJBQKZLoDpkKiimg0JmaptwBnTixxprax-XcxF_EG9HLBke3jutMpiCssuxg1Bi1crxtVsJFDR0XxLm97QQFZE2Ym3Fd1jnVlPyhqMFaenJ07tMk8"
+}
+
+###
+POST {{base_url}}/api/productcatalogitem
+Content-Type: application/json
+Authorization: Bearer {{$dotenv Token}}
+
+{
+  "name": "Cacahuètes grillées et salées",
+  "description": "Cacahuètes croquantes grillées et salées, idéales pour l'apéritif",
+  "unit_value": "unité",
+  "FKcategory": "Snacks",
+  "price_by_unity": "1.8",
+  "price_by_unity_asso": "1.5",
+  "image": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcS6oaQ-9ORboKiCqUKWRyfp-WYZ1mo1g5FYS029EfCRDUI7kIef-m8MlQod_-dHIey4-tPO3YZQI3gvUnrN0WB0HjvuhTWD570ZnC6_Yt2GJFPWaxTlSSoLJVU"
+}
