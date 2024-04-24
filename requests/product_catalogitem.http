@@ -95,6 +95,7 @@ Authorization: Bearer {{$dotenv Token}}
   "image": "https://www.cdiscount.com/pdt2/3/0/2/1/700x700/lim5627439687302/rw/conserve-et-bocau-navire-thon-naturel.jpg"
 }
 
+//Hygiène
 ###
 POST {{base_url}}/api/productcatalogitem
 Content-Type: application/json
