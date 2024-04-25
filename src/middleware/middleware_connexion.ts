@@ -24,7 +24,6 @@ const authenticationMiddleware = async (
     const decoded = jwt.verify(token, process.env.JWT_SECRET!) as {
       role: string; userId: number
     };
-    console.log(decoded);
 
     const isBlacklisted = await BlackList.findOne({ where: { token: token } });
 
@@ -33,7 +32,6 @@ const authenticationMiddleware = async (
           userId: decoded.userId,
           role: decoded.role
         };
-        console.log(decoded.role);
         next();
     } else {
       return res.status(401).json({ error: "Token invalide. Authentification requise." });
