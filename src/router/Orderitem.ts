@@ -6,8 +6,6 @@ import { UnitySymbol } from "../models/order_item";
 export const orderItemRouter = Router();
 
 orderItemRouter.post("/", async (req: Request, res: Response) => {
-  console.log("patate");
-
   try {
     const { quantity, price_by_unity, weight_unity, unity_symbol, price_by_unity_asso } = req.body;
 

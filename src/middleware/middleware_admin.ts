@@ -6,7 +6,6 @@ const adminMiddleware = (
   res: Response,
   next: NextFunction
 ) => {
-  console.log("middlware",req.customer);
   authenticationMiddleware(req, res, function() {
     if (req.customer?.role === "admin") {
       next();
